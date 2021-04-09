@@ -1,7 +1,10 @@
 import React from 'react';
 import {videos} from "./videosDB";
+import {useData} from "./DataContext";
 
 export const Videos = () => {
+    const {dispatch} = useData();
+
     return (
         <div>
             <h1>This is video page.</h1>
@@ -12,7 +15,7 @@ export const Videos = () => {
                             <img width="95%" src={video.image} alt="Thumbnail" />
                             <div style={{alignText:"center",width:"90%",margin:"0 auto",flexGrow:1}}>{video.title}</div> 
                             <div style={{margin:"0.5rem 0"}}>
-                                <button>Watch Later</button>
+                                <button onClick={()=>dispatch({type:"ADD_TO_WATCH_LATER",payload:video})}>Watch Later</button>
                                 <button>Add to Playlist</button>
                             </div>
                         </div>
