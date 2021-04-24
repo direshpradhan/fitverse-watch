@@ -1,0 +1,5 @@
+.card-container {
+  display: inline-flex;
+  margin: 1rem;
+  width: 30%;
+}

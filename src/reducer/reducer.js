@@ -3,6 +3,7 @@ import { v4 as uuid } from "uuid";
 export const initialState = {
   watchLater: [],
   liked: [],
+  history: [],
   playlist: [{ id: 1, name: "abc", videos: ["dI0O8TnC2d8", "AXZlb-3MMYE"] }],
 };
 
@@ -21,10 +22,14 @@ export const reducer = (state, { type, payload }) => {
       const isInLikedVideos = state.liked.find(
         (video) => video.id === payload.id
       );
+
       if (!isInLikedVideos) {
         return { ...state, liked: [...state.liked, payload] };
       }
-      return state;
+      return {
+        ...state,
+        liked: state.liked.filter((video) => video.id !== payload.id),
+      };
 
     case "CREATE_PLAYLIST":
       return {
@@ -76,6 +81,16 @@ export const reducer = (state, { type, payload }) => {
           return playlistItem;
         }),
       };
+
+    case "ADD_TO_HISTORY":
+      const isInHistory = state.history.find(
+        (historyItem) => historyItem.id === payload.id
+      );
+
+      if (!isInHistory) {
+        return { ...state, history: [...state.history, payload] };
+      }
+      return state;
 
     default:
       break;
