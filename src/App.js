@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Videos } from "./pages/Videos/Videos";
 import { Playlist } from "./pages/Playlist/Playlist";
 import { WatchLater } from "./pages/WatchLater/WatchLater";

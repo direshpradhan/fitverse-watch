@@ -6,7 +6,7 @@ import styles from "./Playlist.module.css";
 export const Playlist = () => {
   const { state, dispatch } = useData();
 
-  const [editInput, setEditInput] = useState(false);
+  // const [editInput, setEditInput] = useState(false);
   const [newPlaylistName, setNewPlaylistName] = useState("");
   const playlistInput = useRef(null);
 
@@ -31,9 +31,9 @@ export const Playlist = () => {
             <input
               className={`${styles.playlist_name}`}
               type="text"
-              readOnly={!editInput}
+              readOnly
               ref={playlistInput}
-              value={editInput ? newPlaylistName : name}
+              value={name}
               onChange={(e) => setNewPlaylistName(e.target.value)}
             />
             {/* <button onClick={changePlaylistName}>Change Name</button>
