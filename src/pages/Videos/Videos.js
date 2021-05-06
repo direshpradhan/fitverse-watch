@@ -1,11 +1,11 @@
 import React from "react";
 import { videos } from "../../videosDB";
 import { VideoCard } from "../../components/VideoCard/VideoCard";
+import styles from "./Videos.module.css";
 
 export const Videos = () => {
   return (
-    <div>
-      <h1>This is video page.</h1>
+    <div className={`${styles.main}`}>
       {/* <div
         style={{
           display: "flex",
@@ -16,14 +16,7 @@ export const Videos = () => {
       > */}
       {videos.map((video) => {
         return (
-          <div
-            style={{
-              display: "inline-flex",
-              // flexDirection: "column",
-              margin: "1rem",
-              width: "30%",
-            }}
-          >
+          <div className={`${styles.card_container}`}>
             <VideoCard videoId={video.id} />
           </div>
         );

@@ -16,7 +16,10 @@ export const reducer = (state, { type, payload }) => {
       if (!isInWatchLater) {
         return { ...state, watchLater: [...state.watchLater, payload] };
       }
-      return state;
+      return {
+        ...state,
+        watchLater: state.watchLater.filter((video) => video.id !== payload.id),
+      };
 
     case "LIKE_UNLIKE":
       const isInLikedVideos = state.liked.find(
@@ -88,9 +91,14 @@ export const reducer = (state, { type, payload }) => {
       );
 
       if (!isInHistory) {
-        return { ...state, history: [...state.history, payload] };
+        return { ...state, history: [payload, ...state.history] };
       }
-      return state;
+      return {
+        ...state,
+        history: [payload].concat(
+          state.history.filter((historyItem) => historyItem.id !== payload.id)
+        ),
+      };
 
     default:
       break;

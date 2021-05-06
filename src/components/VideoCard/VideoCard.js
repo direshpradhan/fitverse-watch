@@ -10,7 +10,7 @@ export const VideoCard = ({ videoId }) => {
   const { id, title, image } = video;
 
   return (
-    <Link to={`/video/${id}`}>
+    <Link className={`${styles.link}`} to={`/video/${id}`}>
       <div onClick={() => dispatch({ type: "ADD_TO_HISTORY", payload: video })}>
         <img width="100%" src={image} alt="Thumbnail" />
         <div className={`${styles.title}`}>{title}</div>

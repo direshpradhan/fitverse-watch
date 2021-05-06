@@ -6,15 +6,13 @@ import { WatchLater } from "./pages/WatchLater/WatchLater";
 import { VideoDetails } from "./pages/VideoDetails/VideoDetails";
 import { LikedVideos } from "./pages/LikedVideos/LikedVideos";
 import { History } from "./pages/History/History";
+import { Nav } from "./components/Nav/Nav";
 
 function App() {
   return (
     <div className="App">
-      <h1>Video Library</h1>
-      <Link to="/">Videos</Link> <Link to="/playlist">Playlist</Link>{" "}
-      <Link to="/watch-later">WatchLater</Link>{" "}
-      <Link to="/liked-videos">Like</Link>
-      <Link to="/history">History</Link>
+      <Nav />
+
       <Routes>
         <Route path="/" element={<Videos />} />
         <Route path="/playlist" element={<Playlist />} />

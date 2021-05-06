@@ -1,0 +1,19 @@
+.main {
+  margin: 0 1.5rem;
+}
+
+.card_container {
+  margin: 1rem 2rem 1rem 0;
+}
+
+.playlist_name {
+  /* font-weight: 600; */
+  border: none;
+  font-size: 1.2rem;
+}
+
+@media screen and (min-width: 800px) {
+  .card_container {
+    width: 22%;
+  }
+}

@@ -1,31 +1,42 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { VideoCard } from "../../components/VideoCard/VideoCard";
 import { useData } from "../../context/DataContext";
+import styles from "./Playlist.module.css";
 
 export const Playlist = () => {
   const { state, dispatch } = useData();
 
   const [editInput, setEditInput] = useState(false);
   const [newPlaylistName, setNewPlaylistName] = useState("");
-  console.log(editInput);
+  const playlistInput = useRef(null);
+
+  // const playlist = state.playlist.find((playlistItem)=>playlistItem.id)
+  // const changePlaylistName = () => {
+  //   if (!editInput) {
+  //     console.log("inside focus");
+  //     playlistInput.current.focus();
+  //   }
+  //   setEditInput((val) => !val);
+  // };
+
   return (
-    <div>
-      <h1>This is Playlist</h1>
+    <div className={styles.main}>
+      <h1>Playlist</h1>
       {state.playlist.map((playlistItem) => {
         const { id, name, videos } = playlistItem;
         newPlaylistName === "" && setNewPlaylistName(name);
+        console.log(newPlaylistName);
         return (
           <div>
             <input
-              style={{ border: "none" }}
+              className={`${styles.playlist_name}`}
               type="text"
               readOnly={!editInput}
-              value={newPlaylistName}
+              ref={playlistInput}
+              value={editInput ? newPlaylistName : name}
               onChange={(e) => setNewPlaylistName(e.target.value)}
             />
-            <button onClick={() => setEditInput((val) => !val)}>
-              Change Name
-            </button>
+            {/* <button onClick={changePlaylistName}>Change Name</button>
             <button
               onClick={() =>
                 dispatch({
@@ -35,26 +46,18 @@ export const Playlist = () => {
               }
             >
               Save
-            </button>
+            </button> */}
             <button
+              className="btn"
               onClick={() => dispatch({ type: "CLEAR_PLAYLIST", payload: id })}
             >
               Clear
             </button>
 
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                margin: "0 1rem",
-                cursor: "pointer",
-              }}
-            >
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
               {videos.map((videoId) => {
                 return (
-                  <div
-                    style={{ display: "flex", margin: "1rem", width: "22%" }}
-                  >
+                  <div className={`${styles.card_container} flex`}>
                     <VideoCard videoId={videoId} />
                   </div>
                 );

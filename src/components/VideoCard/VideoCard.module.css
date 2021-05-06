@@ -1,5 +1,19 @@
 .title {
-  text-align: center;
+  /* text-align: center; */
   width: 90%;
-  margin: 0 auto;
+  margin: 0.25rem auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.link {
+  color: black;
+  margin: 0.75rem 0;
+}
+
+.link:hover {
+  font-weight: 600;
 }

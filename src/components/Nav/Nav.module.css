@@ -1,0 +1,36 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  position: sticky;
+  top: 0;
+  height: 12vh;
+  background-color: white;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 2px 0 rgb(148 150 159 / 30%);
+}
+
+.nav > a > div {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.link {
+  color: black;
+}
+
+.link:hover {
+  font-weight: 700;
+}
+
+@media screen and (min-width: 800px) {
+  .nav > a > div {
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+}

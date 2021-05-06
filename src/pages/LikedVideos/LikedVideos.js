@@ -7,11 +7,11 @@ export const LikedVideos = () => {
   const { state } = useData();
 
   return (
-    <div>
-      <h1>This is liked section</h1>
+    <div className={`${styles.main}`}>
+      <h1>Liked Videos</h1>
       {state.liked.map((video) => {
         return (
-          <div className={`${styles["card-container"]}`}>
+          <div className={`${styles.card_container}`}>
             <VideoCard videoId={video.id} />
           </div>
 

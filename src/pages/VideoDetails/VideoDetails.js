@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router";
 import { useData } from "../../context/DataContext";
 import { videos } from "../../videosDB";
+import styles from "./VideoDetails.module.css";
 
 export const VideoDetails = () => {
   const { videoId } = useParams();
@@ -11,6 +12,9 @@ export const VideoDetails = () => {
   const video = videos.find((video) => video.id === videoId);
   const { id, title } = video;
   const likedVideo = state.liked.find((video) => video.id === videoId);
+  const watchLaterVideo = state.watchLater.find(
+    (video) => video.id === videoId
+  );
   const newPlaylistHandler = () => {
     dispatch({
       type: "CREATE_PLAYLIST",
@@ -20,7 +24,7 @@ export const VideoDetails = () => {
   };
 
   return (
-    <div style={{ width: "75%", height: "550px" }}>
+    <div className={`${styles.main_container}`}>
       <iframe
         width="100%"
         height="100%"
@@ -32,53 +36,106 @@ export const VideoDetails = () => {
         allowAutoplay="autoplay"
       ></iframe>
       <h2 style={{ textAlign: "left" }}>{title}</h2>
-      <button
-        onClick={() => dispatch({ type: "ADD_TO_WATCH_LATER", payload: video })}
-      >
-        Watch Later
-      </button>
-      <button onClick={() => dispatch({ type: "LIKE_UNLIKE", payload: video })}>
-        {likedVideo ? "Unlike" : "Like"}
-      </button>
-      <button onClick={() => setShowPlaylistModal((state) => !state)}>
-        Add to Playlist
-      </button>
-      {showPlaylistModal && (
+      <div className={`flex ${styles.options}`}>
+        {!watchLaterVideo ? (
+          <div>
+            <span
+              onClick={() =>
+                dispatch({ type: "ADD_TO_WATCH_LATER", payload: video })
+              }
+              className={`${styles.pointer} material-icons-outlined`}
+            >
+              watch_later
+            </span>
+            <div>Add to WatchLater</div>
+          </div>
+        ) : (
+          <div>
+            <span
+              onClick={() =>
+                dispatch({ type: "ADD_TO_WATCH_LATER", payload: video })
+              }
+              className={`${styles.pointer} material-icons`}
+            >
+              watch_later
+            </span>
+            <div>Remove from WatchLater</div>
+          </div>
+        )}{" "}
+        {likedVideo ? (
+          <div>
+            <span
+              onClick={() => dispatch({ type: "LIKE_UNLIKE", payload: video })}
+              className={`${styles.pointer} material-icons`}
+            >
+              thumb_up
+            </span>
+            <div>Unlike</div>
+          </div>
+        ) : (
+          <div>
+            <span
+              onClick={() => dispatch({ type: "LIKE_UNLIKE", payload: video })}
+              className={`${styles.pointer} material-icons-outlined`}
+            >
+              thumb_up
+            </span>
+            <div>Like</div>
+          </div>
+        )}
         <div>
-          {state?.playlist?.map((playlistItem) => {
-            return (
-              <div>
-                <label>
-                  {console.log(
-                    playlistItem.videos.find((videoId) => videoId === id)
-                  )}
-                  <input
-                    onChange={() =>
-                      dispatch({
-                        type: "ADD_TO_PLAYLIST",
-                        payload: { playlistId: playlistItem.id, videoId: id },
-                      })
-                    }
-                    type="checkbox"
-                    checked={
-                      playlistItem.videos.find(
-                        (playlistVideo) => playlistVideo === id
-                      )
-                        ? true
-                        : false
-                    }
-                  />
-                  {playlistItem.name}
-                </label>
-              </div>
-            );
-          })}
-          <input
-            onChange={(event) => setPlaylistName(event.target.value)}
-            type="text"
-            value={playlistName}
-          />
-          <button onClick={newPlaylistHandler}>Add</button>
+          <span
+            onClick={() => setShowPlaylistModal((state) => !state)}
+            className={`${styles.pointer} material-icons`}
+          >
+            playlist_add
+          </span>
+          <div>Add to Playlist</div>
+        </div>
+      </div>
+
+      {showPlaylistModal && (
+        <div
+          onClick={() => setShowPlaylistModal((state) => !state)}
+          className={`${styles.modal_container}`}
+        >
+          <div className={`${styles.modal}`}>
+            <h4>Playlists</h4>
+            {state?.playlist?.map((playlistItem) => {
+              return (
+                <div>
+                  <label>
+                    {console.log(
+                      playlistItem.videos.find((videoId) => videoId === id)
+                    )}
+                    <input
+                      onChange={() =>
+                        dispatch({
+                          type: "ADD_TO_PLAYLIST",
+                          payload: { playlistId: playlistItem.id, videoId: id },
+                        })
+                      }
+                      type="checkbox"
+                      checked={
+                        playlistItem.videos.find(
+                          (playlistVideo) => playlistVideo === id
+                        )
+                          ? true
+                          : false
+                      }
+                    />
+                    {playlistItem.name}
+                  </label>
+                </div>
+              );
+            })}
+            <input
+              onChange={(event) => setPlaylistName(event.target.value)}
+              type="text"
+              value={playlistName}
+            />{" "}
+            <button onClick={newPlaylistHandler}>Add</button>
+          </div>
         </div>
       )}
     </div>

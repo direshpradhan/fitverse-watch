@@ -1,33 +1,18 @@
 import React from "react";
+import { VideoCard } from "../../components/VideoCard/VideoCard";
 import { useData } from "../../context/DataContext";
+import styles from "./WatchLater.module.css";
 
 export const WatchLater = () => {
   const { state } = useData();
 
   return (
-    <div>
-      <h1>This is watch later</h1>
+    <div className={`${styles.main}`}>
+      <h1>Watch Later</h1>
       {state.watchLater.map((video) => {
         return (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              margin: "1rem 0",
-              width: "30%",
-            }}
-          >
-            <img width="95%" src={video.image} alt="Thumbnail" />
-            <div
-              style={{
-                alignText: "center",
-                width: "90%",
-                margin: "0 auto",
-                flexGrow: 1,
-              }}
-            >
-              {video.title}
-            </div>
+          <div className={`${styles.card_container}`}>
+            <VideoCard videoId={video.id} />
           </div>
         );
       })}

@@ -1,0 +1,16 @@
+.main {
+  margin: 0 1.5rem;
+}
+
+.card_container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin-right: 2rem;
+  width: 30%;
+}
+
+@media screen and (min-width: 800px) {
+  .card_container {
+    width: 30%;
+  }
+}
