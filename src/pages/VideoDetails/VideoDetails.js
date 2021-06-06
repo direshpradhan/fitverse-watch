@@ -99,7 +99,10 @@ export const VideoDetails = () => {
           onClick={() => setShowPlaylistModal((state) => !state)}
           className={`${styles.modal_container}`}
         >
-          <div className={`${styles.modal}`}>
+          <div
+            onClick={(event) => event.stopPropagation()}
+            className={`${styles.modal}`}
+          >
             <h4>Playlists</h4>
             {state?.playlist?.map((playlistItem) => {
               return (

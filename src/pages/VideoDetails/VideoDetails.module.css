@@ -16,7 +16,7 @@
   right: 0;
   background-color: rgba(0, 0, 0, 0.6);
   overflow: hidden;
-  /* z-index: 1; */
+  z-index: 1;
 }
 
 .modal {
@@ -28,6 +28,16 @@
   background-color: white;
   padding: 1rem;
   z-index: 2;
+}
+
+.modal > h4 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin: 0.5rem;
+}
+
+.modal > div {
+  margin: 0.5rem;
 }
 
 .options {
