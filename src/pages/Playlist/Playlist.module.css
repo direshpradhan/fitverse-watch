@@ -3,7 +3,9 @@
 }
 
 .card_container {
+  position: relative;
   margin: 1rem 2rem 1rem 0;
+  min-width: 65%;
 }
 
 .playlist_name {
@@ -12,8 +14,20 @@
   font-size: 1.2rem;
 }
 
-@media screen and (min-width: 800px) {
+.more_options_icon {
+  position: absolute;
+  right: -0.25rem;
+  bottom: 4.1rem;
+}
+
+.more_options {
+  position: absolute;
+  bottom: 0rem;
+  right: 0;
+}
+
+@media screen and (min-width: 768px) {
   .card_container {
-    width: 22%;
+    min-width: 25%;
   }
 }

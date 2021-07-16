@@ -4,7 +4,20 @@ export const initialState = {
   watchLater: [],
   liked: [],
   history: [],
-  playlist: [{ id: 1, name: "abc", videos: ["dI0O8TnC2d8", "AXZlb-3MMYE"] }],
+  playlist: [
+    {
+      id: 1,
+      name: "abc",
+      videos: [
+        "dI0O8TnC2d8",
+        "AXZlb-3MMYE",
+        "NK-UIRH-K_k",
+        "TvbRwuAAsxQ",
+        "_sCM0q_OTAA",
+        "Qp88IAYnvWc",
+      ],
+    },
+  ],
 };
 
 export const reducer = (state, { type, payload }) => {

@@ -39,12 +39,15 @@
 .more_options_icon {
   position: absolute;
   right: -0.25rem;
-  bottom: 4.1rem;
+  bottom: 2.75rem;
+  color: gray;
+  /* opacity: 0.75; */
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
 .more_options {
   position: absolute;
-  bottom: -1rem;
-  right: -1rem;
+  bottom: -0.75rem;
+  right: 1rem;
   z-index: 1;
 }

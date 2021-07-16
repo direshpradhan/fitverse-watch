@@ -1,23 +1,15 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useData } from "../../context/DataContext";
-import { videos } from "../../videosDB";
-import { MoreOptions } from "../MoreOptions/MoreOptions";
-import styles from "./VideoCard.module.css";
+import { useNavigate } from "react-router-dom";
+import { MoreOptions } from "../../../../components/MoreOptions/MoreOptions";
+import { useData } from "../../../../context/DataContext";
+import { videos } from "../../../../videosDB";
+import styles from "./PlaylistCard.module.css";
 
-export const VideoCard = ({ videoId }) => {
+export const PlaylistCard = ({ videoId }) => {
   const { dispatch } = useData();
   const [showOptionsModal, setShowOptionsModal] = useState(false);
   const video = videos.find((video) => video.id === videoId);
-  const {
-    id,
-    title,
-    image,
-    channelImage,
-    channelName,
-    publishedOn,
-    statistics: { viewCount },
-  } = video;
+  const { id, title, image, channelImage, channelName } = video;
   const navigate = useNavigate();
 
   return (
@@ -43,8 +35,6 @@ export const VideoCard = ({ videoId }) => {
               {title}
             </div>
             <div className={`${styles.name}`}>{channelName}</div>
-            <span className={`${styles.name}`}>{viewCount} views</span>
-            <span className={`${styles.name}`}>{publishedOn}</span>
           </div>
         </div>
         <span

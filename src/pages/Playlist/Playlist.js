@@ -1,11 +1,14 @@
 import React, { useRef, useState } from "react";
+import { MoreOptions } from "../../components/MoreOptions/MoreOptions";
 import { VideoCard } from "../../components/VideoCard/VideoCard";
 import { useData } from "../../context/DataContext";
+import { PlaylistCard } from "./Components/PlaylistCard/PlaylistCard";
 import styles from "./Playlist.module.css";
 
 export const Playlist = () => {
   const { state, dispatch } = useData();
 
+  const [showOptionsModal, setShowOptionsModal] = useState(false);
   // const [editInput, setEditInput] = useState(false);
   const [newPlaylistName, setNewPlaylistName] = useState("");
   const playlistInput = useRef(null);
@@ -54,11 +57,20 @@ export const Playlist = () => {
               Clear
             </button>
 
-            <div style={{ display: "flex", flexWrap: "wrap" }}>
+            <div className="flex" style={{ overflowX: "auto" }}>
               {videos.map((videoId) => {
                 return (
-                  <div className={`${styles.card_container} flex`}>
-                    <VideoCard videoId={videoId} />
+                  <div className={`${styles.card_container}`}>
+                    <PlaylistCard videoId={videoId} />
+                    {/* <span
+                      onClick={() => setShowOptionsModal((option) => !option)}
+                      className={`${styles.more_options_icon} material-icons-outlined`}
+                    >
+                      more_vert
+                    </span> */}
+                    {/* <div className={`${styles.more_options}`}>
+                      {showOptionsModal && <MoreOptions id={videoId} />}
+                    </div> */}
                   </div>
                 );
               })}
