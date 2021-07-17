@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Videos } from "./pages/Videos/Videos";
-import { Playlist } from "./pages/Playlist/Playlist";
+import { Playlist } from "./pages/Playlist/PlaylistListing";
 import { WatchLater } from "./pages/WatchLater/WatchLater";
 import { VideoDetails } from "./pages/VideoDetails/VideoDetails";
 import { LikedVideos } from "./pages/LikedVideos/LikedVideos";

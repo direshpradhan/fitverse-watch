@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useData } from "../../context/DataContext";
-import { videos } from "../../videosDB";
 import { MoreOptions } from "../MoreOptions/MoreOptions";
 import styles from "./VideoCard.module.css";
 
 export const VideoCard = ({ videoId }) => {
-  const { dispatch } = useData();
+  const { dispatch, videos } = useData();
   const [showOptionsModal, setShowOptionsModal] = useState(false);
-  const video = videos.find((video) => video.id === videoId);
+  const video = videos.find((video) => video._id === videoId);
   const {
-    id,
+    _id: id,
     title,
     image,
     channelImage,

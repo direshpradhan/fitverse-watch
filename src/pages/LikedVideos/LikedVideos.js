@@ -4,15 +4,15 @@ import { useData } from "../../context/DataContext";
 import styles from "./LikedVideos.module.css";
 
 export const LikedVideos = () => {
-  const { state } = useData();
+  const { liked } = useData();
 
   return (
     <div className={`${styles.main}`}>
       <h1>Liked Videos</h1>
-      {state.liked.map((video) => {
+      {liked.map((video) => {
         return (
           <div className={`${styles.card_container}`}>
-            <VideoCard videoId={video.id} />
+            <VideoCard videoId={video._id} />
           </div>
 
           //   <div

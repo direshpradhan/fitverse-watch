@@ -2,11 +2,11 @@ import React, { useRef, useState } from "react";
 import { MoreOptions } from "../../components/MoreOptions/MoreOptions";
 import { VideoCard } from "../../components/VideoCard/VideoCard";
 import { useData } from "../../context/DataContext";
-import { PlaylistCard } from "./Components/PlaylistCard/PlaylistCard";
-import styles from "./Playlist.module.css";
+import { PlaylistCard } from "./Components/PlaylistListingPageCard/PlaylistListingPageCard";
+import styles from "./PlaylistListing.module.css";
 
 export const Playlist = () => {
-  const { state, dispatch } = useData();
+  const { playlist, dispatch } = useData();
 
   const [showOptionsModal, setShowOptionsModal] = useState(false);
   // const [editInput, setEditInput] = useState(false);
@@ -25,7 +25,7 @@ export const Playlist = () => {
   return (
     <div className={styles.main}>
       <h1>Playlist</h1>
-      {state.playlist.map((playlistItem) => {
+      {playlist.map((playlistItem) => {
         const { id, name, videos } = playlistItem;
         newPlaylistName === "" && setNewPlaylistName(name);
         console.log(newPlaylistName);

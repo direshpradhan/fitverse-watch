@@ -1,6 +1,7 @@
 import { v4 as uuid } from "uuid";
 
 export const initialState = {
+  videos: [],
   watchLater: [],
   liked: [],
   history: [],
@@ -22,21 +23,27 @@ export const initialState = {
 
 export const reducer = (state, { type, payload }) => {
   switch (type) {
+    case "INITIALIZE_VIDEOS":
+      console.log(payload);
+      return { ...state, videos: payload };
+
     case "ADD_TO_WATCH_LATER":
       const isInWatchLater = state.watchLater.find(
-        (video) => video.id === payload.id
+        (video) => video._id === payload._id
       );
       if (!isInWatchLater) {
         return { ...state, watchLater: [...state.watchLater, payload] };
       }
       return {
         ...state,
-        watchLater: state.watchLater.filter((video) => video.id !== payload.id),
+        watchLater: state.watchLater.filter(
+          (video) => video._id !== payload._id
+        ),
       };
 
     case "LIKE_UNLIKE":
       const isInLikedVideos = state.liked.find(
-        (video) => video.id === payload.id
+        (video) => video._id === payload._id
       );
 
       if (!isInLikedVideos) {
@@ -44,7 +51,7 @@ export const reducer = (state, { type, payload }) => {
       }
       return {
         ...state,
-        liked: state.liked.filter((video) => video.id !== payload.id),
+        liked: state.liked.filter((video) => video._id !== payload._id),
       };
 
     case "CREATE_PLAYLIST":
@@ -100,7 +107,7 @@ export const reducer = (state, { type, payload }) => {
 
     case "ADD_TO_HISTORY":
       const isInHistory = state.history.find(
-        (historyItem) => historyItem.id === payload.id
+        (historyItem) => historyItem._id === payload._id
       );
 
       if (!isInHistory) {
@@ -109,7 +116,7 @@ export const reducer = (state, { type, payload }) => {
       return {
         ...state,
         history: [payload].concat(
-          state.history.filter((historyItem) => historyItem.id !== payload.id)
+          state.history.filter((historyItem) => historyItem._id !== payload._id)
         ),
       };
 

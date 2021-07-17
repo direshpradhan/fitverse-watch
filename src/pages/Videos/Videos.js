@@ -1,10 +1,11 @@
 import React from "react";
-import { videos } from "../../videosDB";
 import { VideoCard } from "../../components/VideoCard/VideoCard";
 import styles from "./Videos.module.css";
 import { useNavigate } from "react-router";
+import { useData } from "../../context/DataContext";
 
 export const Videos = () => {
+  const { videos } = useData();
   const navigate = useNavigate();
   return (
     <div className={`${styles.main}`}>
@@ -48,7 +49,7 @@ export const Videos = () => {
           {videos.map((video) => {
             return (
               <div className={`${styles.card_container}`}>
-                <VideoCard videoId={video.id} />
+                <VideoCard videoId={video._id} />
               </div>
             );
           })}

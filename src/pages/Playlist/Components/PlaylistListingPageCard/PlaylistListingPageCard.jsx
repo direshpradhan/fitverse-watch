@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MoreOptions } from "../../../../components/MoreOptions/MoreOptions";
 import { useData } from "../../../../context/DataContext";
-import { videos } from "../../../../videosDB";
-import styles from "./PlaylistCard.module.css";
+import styles from "./PlaylistListingPageCard.module.css";
 
 export const PlaylistCard = ({ videoId }) => {
-  const { dispatch } = useData();
+  const { videos, dispatch } = useData();
   const [showOptionsModal, setShowOptionsModal] = useState(false);
-  const video = videos.find((video) => video.id === videoId);
+  const video = videos.find((video) => video._id === videoId);
   const { id, title, image, channelImage, channelName } = video;
   const navigate = useNavigate();
 

@@ -4,15 +4,15 @@ import { useData } from "../../context/DataContext";
 import styles from "./WatchLater.module.css";
 
 export const WatchLater = () => {
-  const { state } = useData();
+  const { watchLater } = useData();
 
   return (
     <div className={`${styles.main}`}>
       <h1>Watch Later</h1>
-      {state.watchLater.map((video) => {
+      {watchLater.map((video) => {
         return (
           <div className={`${styles.card_container}`}>
-            <VideoCard videoId={video.id} />
+            <VideoCard videoId={video._id} />
           </div>
         );
       })}

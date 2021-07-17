@@ -4,14 +4,14 @@ import { useData } from "../../context/DataContext";
 import styles from "./History.module.css";
 
 export const History = () => {
-  const { state } = useData();
+  const { history } = useData();
   return (
     <div className={`${styles.main}`}>
       <h1>History</h1>
-      {state.history.map((video) => {
+      {history.map((video) => {
         return (
           <div className={`${styles.card_container}`}>
-            <VideoCard videoId={video.id} />
+            <VideoCard videoId={video._id} />
           </div>
         );
       })}

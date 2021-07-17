@@ -1,24 +1,25 @@
 import React, { useState } from "react";
 import { useParams } from "react-router";
 import { useData } from "../../context/DataContext";
-import { videos } from "../../videosDB";
 import styles from "./VideoDetails.module.css";
 
 export const VideoDetails = () => {
   const { videoId } = useParams();
   const [showPlaylistModal, setShowPlaylistModal] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
-  const { state, dispatch } = useData();
-  const video = videos.find((video) => video.id === videoId);
-  const { id, title } = video;
-  const likedVideo = state.liked.find((video) => video.id === videoId);
-  const watchLaterVideo = state.watchLater.find(
-    (video) => video.id === videoId
-  );
+  const { state, dispatch, videos, liked, watchLater } = useData();
+  console.log(videoId);
+  const video = videos.find((video) => {
+    console.log(video._id);
+    return video._id === videoId;
+  });
+  // const { _id: id, title } = video;
+  const likedVideo = liked.find((video) => video._id === videoId);
+  const watchLaterVideo = watchLater.find((video) => video._id === videoId);
   const newPlaylistHandler = () => {
     dispatch({
       type: "CREATE_PLAYLIST",
-      payload: { playlistName, videoId: id },
+      payload: { playlistName, videoId: video?._id },
     });
     setPlaylistName("");
   };
@@ -28,14 +29,14 @@ export const VideoDetails = () => {
       <iframe
         width="100%"
         height="100%"
-        src={`https://www.youtube.com/embed/${id}`}
+        src={`https://www.youtube.com/embed/${video?._id}`}
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen="allowfullscreen"
         allowAutoplay="autoplay"
       ></iframe>
-      <h2 style={{ textAlign: "left" }}>{title}</h2>
+      <h2 style={{ textAlign: "left" }}>{video?.title}</h2>
       <div className={`flex ${styles.options}`}>
         {!watchLaterVideo ? (
           <div>
@@ -109,19 +110,24 @@ export const VideoDetails = () => {
                 <div>
                   <label>
                     {console.log(
-                      playlistItem.videos.find((videoId) => videoId === id)
+                      playlistItem.videos.find(
+                        (videoId) => videoId === video._id
+                      )
                     )}
                     <input
                       onChange={() =>
                         dispatch({
                           type: "ADD_TO_PLAYLIST",
-                          payload: { playlistId: playlistItem.id, videoId: id },
+                          payload: {
+                            playlistId: playlistItem.id,
+                            videoId: video._id,
+                          },
                         })
                       }
                       type="checkbox"
                       checked={
                         playlistItem.videos.find(
-                          (playlistVideo) => playlistVideo === id
+                          (playlistVideo) => playlistVideo === video._id
                         )
                           ? true
                           : false
