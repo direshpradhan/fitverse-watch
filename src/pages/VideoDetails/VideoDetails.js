@@ -8,11 +8,7 @@ export const VideoDetails = () => {
   const [showPlaylistModal, setShowPlaylistModal] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
   const { state, dispatch, videos, liked, watchLater } = useData();
-  console.log(videoId);
-  const video = videos.find((video) => {
-    console.log(video._id);
-    return video._id === videoId;
-  });
+  const video = videos.find((video) => video._id === videoId);
   // const { _id: id, title } = video;
   const likedVideo = liked.find((video) => video._id === videoId);
   const watchLaterVideo = watchLater.find((video) => video._id === videoId);
@@ -29,7 +25,7 @@ export const VideoDetails = () => {
       <iframe
         width="100%"
         height="100%"
-        src={`https://www.youtube.com/embed/${video?._id}`}
+        src={`https://www.youtube.com/embed/${video._id}`}
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

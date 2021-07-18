@@ -7,7 +7,7 @@ export const initialState = {
   history: [],
   playlist: [
     {
-      id: 1,
+      id: "1",
       name: "abc",
       videos: [
         "dI0O8TnC2d8",
@@ -24,7 +24,6 @@ export const initialState = {
 export const reducer = (state, { type, payload }) => {
   switch (type) {
     case "INITIALIZE_VIDEOS":
-      console.log(payload);
       return { ...state, videos: payload };
 
     case "ADD_TO_WATCH_LATER":

@@ -8,7 +8,8 @@ export const PlaylistCard = ({ videoId }) => {
   const { videos, dispatch } = useData();
   const [showOptionsModal, setShowOptionsModal] = useState(false);
   const video = videos.find((video) => video._id === videoId);
-  const { id, title, image, channelImage, channelName } = video;
+  console.log(video);
+  // const { id, title, image, channelImage, channelName } = video;
   const navigate = useNavigate();
 
   return (
@@ -18,22 +19,22 @@ export const PlaylistCard = ({ videoId }) => {
         style={{ position: "relative" }}
         onClick={() => dispatch({ type: "ADD_TO_HISTORY", payload: video })}
       >
-        <img width="100%" src={image} alt="Thumbnail" />
+        <img width="100%" src={video?.image} alt="Thumbnail" />
 
         <div className={`${styles.video_details} flex`}>
           <img
             className={`${styles.img_channel} img-circular`}
-            src={channelImage}
+            src={video?.channelImage}
             alt=""
           />
           <div>
             <div
-              onClick={() => navigate(`/video/${id}`)}
+              onClick={() => navigate(`/video/${video?._id}`)}
               className={`${styles.title}`}
             >
-              {title}
+              {video?.title}
             </div>
-            <div className={`${styles.name}`}>{channelName}</div>
+            <div className={`${styles.name}`}>{video?.channelName}</div>
           </div>
         </div>
         <span
@@ -43,7 +44,7 @@ export const PlaylistCard = ({ videoId }) => {
           more_vert
         </span>
         <div className={`${styles.more_options}`}>
-          {showOptionsModal && <MoreOptions id={id} />}
+          {showOptionsModal && <MoreOptions id={video?._id} />}
         </div>
       </div>
     </>
