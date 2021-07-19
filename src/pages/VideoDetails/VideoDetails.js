@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { useData } from "../../context/DataContext";
 import { SideNav } from "../../components/SideNav/SideNav";
 import styles from "./VideoDetails.module.css";
+import { BottomNav } from "../../components/BottomNav/BottomNav";
 
 export const VideoDetails = () => {
   const { videoId } = useParams();
@@ -151,6 +152,7 @@ export const VideoDetails = () => {
           </div>
         )}
       </div>
+      <BottomNav />
     </div>
   );
 };

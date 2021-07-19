@@ -1,8 +1,6 @@
 .main {
-  margin-left: 17.5vw;
   width: 70vw;
   margin: 0 auto;
-  margin-left: 22.5vw;
 }
 
 .main > h2 {
@@ -36,5 +34,11 @@
 @media screen and (min-width: 768px) {
   .card_container {
     min-width: 25%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .main {
+    margin-left: 22.5vw;
   }
 }

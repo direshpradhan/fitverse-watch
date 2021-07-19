@@ -4,6 +4,7 @@ import { useData } from "../../context/DataContext";
 import { SideNav } from "../../components/SideNav/SideNav";
 import styles from "./WatchLater.module.css";
 import { WatchLaterVideoCard } from "./components/WatchLaterVideoCard";
+import { BottomNav } from "../../components/BottomNav/BottomNav";
 
 export const WatchLater = () => {
   const { watchLater } = useData();
@@ -21,6 +22,7 @@ export const WatchLater = () => {
           );
         })}
       </div>
+      <BottomNav />
     </div>
   );
 };

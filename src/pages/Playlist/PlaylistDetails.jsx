@@ -4,6 +4,7 @@ import { useData } from "../../context/DataContext";
 import { PlaylistDetailsVideoCard } from "./Components/PlaylistDetailsVideoCard/PlaylistDetailsVideoCard";
 import { SideNav } from "../../components/SideNav/SideNav";
 import styles from "./PlaylistDetails.module.css";
+import { BottomNav } from "../../components/BottomNav/BottomNav";
 
 export const PlaylistDetails = () => {
   const { playlistId } = useParams();
@@ -74,6 +75,7 @@ export const PlaylistDetails = () => {
           })}
         </div>
       </div>
+      <BottomNav />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { useData } from "../../context/DataContext";
 import { SideNav } from "../../components/SideNav/SideNav";
 import styles from "./History.module.css";
 import { HistoryCard } from "./components/HistoryCard";
+import { BottomNav } from "../../components/BottomNav/BottomNav";
 
 export const History = () => {
   const { history } = useData();
@@ -20,6 +21,7 @@ export const History = () => {
           );
         })}
       </div>
+      <BottomNav />
     </div>
   );
 };

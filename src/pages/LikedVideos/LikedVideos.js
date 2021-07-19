@@ -4,6 +4,7 @@ import { useData } from "../../context/DataContext";
 import { SideNav } from "../../components/SideNav/SideNav";
 import styles from "./LikedVideos.module.css";
 import { LikedVideoCard } from "./components/LikedVideoCard";
+import { BottomNav } from "../../components/BottomNav/BottomNav";
 
 export const LikedVideos = () => {
   const { liked } = useData();
@@ -21,6 +22,7 @@ export const LikedVideos = () => {
           );
         })}
       </div>
+      <BottomNav />
     </div>
   );
 };

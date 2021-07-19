@@ -3,6 +3,7 @@ import { useData } from "../../context/DataContext";
 import { PlaylistCard } from "./Components/PlaylistListingPageCard/PlaylistListingPageCard";
 import styles from "./PlaylistListing.module.css";
 import { SideNav } from "../../components/SideNav/SideNav";
+import { BottomNav } from "../../components/BottomNav/BottomNav";
 
 export const PlaylistListing = () => {
   const { playlist } = useData();
@@ -45,6 +46,7 @@ export const PlaylistListing = () => {
           );
         })}
       </div>
+      <BottomNav />
     </div>
   );
 };
