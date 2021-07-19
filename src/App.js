@@ -9,6 +9,7 @@ import { History } from "./pages/History/History";
 import { Nav } from "./components/Nav/Nav";
 import { Library } from "./pages/Library/Library";
 import { PlaylistDetails } from "./pages/Playlist/PlaylistDetails";
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 
 function App() {
   return (
@@ -17,13 +18,16 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Videos />} />
-        <Route path="/playlist" element={<PlaylistListing />} />
-        <Route path="playlist/:playlistId" element={<PlaylistDetails />} />
-        <Route path="/watch-later" element={<WatchLater />} />
-        <Route path="/liked-videos" element={<LikedVideos />} />
         <Route path="/video/:videoId" element={<VideoDetails />} />
-        <Route path="/history" element={<History />} />
         <Route path="/library" element={<Library />} />
+        <PrivateRoute path="/playlist" element={<PlaylistListing />} />
+        <PrivateRoute
+          path="playlist/:playlistId"
+          element={<PlaylistDetails />}
+        />
+        <PrivateRoute path="/watch-later" element={<WatchLater />} />
+        <PrivateRoute path="/liked-videos" element={<LikedVideos />} />
+        <PrivateRoute path="/history" element={<History />} />
       </Routes>
     </div>
   );
