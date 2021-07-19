@@ -106,7 +106,7 @@ export const reducer = (state, { type, payload }) => {
 
     case "ADD_TO_HISTORY":
       const isInHistory = state.history.find(
-        (historyItem) => historyItem._id === payload._id
+        (historyVideo) => historyVideo._id === payload._id
       );
 
       if (!isInHistory) {
@@ -115,9 +115,18 @@ export const reducer = (state, { type, payload }) => {
       return {
         ...state,
         history: [payload].concat(
-          state.history.filter((historyItem) => historyItem._id !== payload._id)
+          state.history.filter(
+            (historyVideo) => historyVideo._id !== payload._id
+          )
         ),
       };
+
+    case "REMOVE_FROM_HISTORY":
+      const newHistory = state.history.filter(
+        (historyVideo) => historyVideo._id !== payload.videoId
+      );
+
+      return { ...state, history: newHistory };
 
     default:
       break;

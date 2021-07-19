@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useData } from "../../../../context/DataContext";
-import styles from "./PlaylistDetailsVideoCard.module.css";
+import { useData } from "../../../context/DataContext";
+import styles from "./LikedVideoCard.module.css";
 
-export const PlaylistDetailsVideoCard = ({ videoId, playlistId }) => {
+export const LikedVideoCard = ({ videoId }) => {
   const { videos, dispatch } = useData();
   const video = videos.find((video) => video._id === videoId);
   const [showOptionsModal, setShowOptionsModal] = useState(false);
@@ -11,7 +11,7 @@ export const PlaylistDetailsVideoCard = ({ videoId, playlistId }) => {
   return (
     <div
       className={`flex ${styles.card}`}
-      onClick={() => showOptionsModal && setShowOptionsModal((state) => false)}
+      onClick={() => showOptionsModal && setShowOptionsModal(() => false)}
     >
       <img src={video?.image} alt="thumbnail" className={`${styles.img}`} />
 
@@ -41,17 +41,17 @@ export const PlaylistDetailsVideoCard = ({ videoId, playlistId }) => {
           <div
             onClick={() => {
               dispatch({
-                type: "ADD_TO_PLAYLIST",
-                payload: { playlistId, videoId },
+                type: "LIKE_UNLIKE",
+                payload: video,
               });
-              setShowOptionsModal((state) => false);
+              setShowOptionsModal(() => false);
             }}
           >
-            Remove from Playlist
+            Remove from Liked Videos
           </div>
           <div
             className="pointer"
-            onClick={() => setShowOptionsModal((state) => false)}
+            onClick={() => setShowOptionsModal(() => false)}
           >
             Cancel
           </div>

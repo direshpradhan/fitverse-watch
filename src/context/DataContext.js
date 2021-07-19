@@ -8,7 +8,6 @@ export const useData = () => useContext(DataContext);
 
 export const DataContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log(state);
 
   useEffect(() => {
     (async function getVideos() {

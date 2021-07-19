@@ -30,7 +30,7 @@ export const PlaylistCard = ({ videoId }) => {
           <div>
             <div
               onClick={() => navigate(`/video/${video?._id}`)}
-              className={`${styles.title}`}
+              className={`${styles.title} pointer`}
             >
               {video?.title}
             </div>

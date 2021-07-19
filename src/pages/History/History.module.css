@@ -1,15 +1,21 @@
 .main {
-  margin: 0 1.5rem;
+  width: 40vw;
+  margin-left: 27.5vw;
+  margin: 0 auto;
+}
+
+.main > h2 {
+  margin-bottom: 2rem;
 }
 
 .card_container {
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
   margin-right: 2rem;
 }
 
-@media screen and (min-width: 800px) {
-  .card_container {
+@media screen and (min-width: 768px) {
+  /* .card_container {
     width: 30%;
-  }
+  } */
 }
