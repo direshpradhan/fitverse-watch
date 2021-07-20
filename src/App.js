@@ -10,6 +10,7 @@ import { Nav } from "./components/Nav/Nav";
 import { Library } from "./pages/Library/Library";
 import { PlaylistDetails } from "./pages/Playlist/PlaylistDetails";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
+import { Login } from "./pages/Login/Login";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<Videos />} />
         <Route path="/video/:videoId" element={<VideoDetails />} />
         <Route path="/library" element={<Library />} />
+        <Route path="/login" element={<Login />} />
         <PrivateRoute path="/playlist" element={<PlaylistListing />} />
         <PrivateRoute
           path="playlist/:playlistId"

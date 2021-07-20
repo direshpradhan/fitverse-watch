@@ -1,0 +1,27 @@
+.main {
+  height: 70vh;
+  max-width: 25rem;
+  margin: 0 auto;
+}
+
+.title {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.input {
+  margin-bottom: 1rem;
+  padding: 1rem 0.75rem;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.button {
+  width: 100%;
+  padding: 1rem 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+}
