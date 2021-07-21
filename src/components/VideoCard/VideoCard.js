@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useData } from "../../context/DataContext";
 import { MoreOptions } from "../MoreOptions/MoreOptions";
 import styles from "./VideoCard.module.css";
@@ -24,7 +24,7 @@ export const VideoCard = ({ videoId }) => {
     <>
       <div
         style={{ position: "relative" }}
-        onClick={() => dispatch({ type: "ADD_TO_HISTORY", payload: video })}
+        onClick={() => dispatch({ type: "ADD_TO_HISTORY", payload: video._id })}
       >
         <img width="100%" src={image} alt="Thumbnail" />
 

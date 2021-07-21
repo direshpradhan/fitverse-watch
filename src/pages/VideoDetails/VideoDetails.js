@@ -12,8 +12,8 @@ export const VideoDetails = () => {
   const { state, dispatch, videos, liked, watchLater } = useData();
   const video = videos.find((video) => video._id === videoId);
   // const { _id: id, title } = video;
-  const likedVideo = liked.find((video) => video._id === videoId);
-  const watchLaterVideo = watchLater.find((video) => video._id === videoId);
+  const likedVideo = liked.find((videoID) => videoID === videoId);
+  const watchLaterVideo = watchLater.find((videoID) => videoID === videoId);
   const newPlaylistHandler = () => {
     dispatch({
       type: "CREATE_PLAYLIST",
@@ -42,7 +42,7 @@ export const VideoDetails = () => {
             <div>
               <span
                 onClick={() =>
-                  dispatch({ type: "ADD_TO_WATCH_LATER", payload: video })
+                  dispatch({ type: "TOGGLE_WATCH_LATER", payload: video._id })
                 }
                 className={`${styles.pointer} material-icons-outlined`}
               >
@@ -54,7 +54,7 @@ export const VideoDetails = () => {
             <div>
               <span
                 onClick={() =>
-                  dispatch({ type: "ADD_TO_WATCH_LATER", payload: video })
+                  dispatch({ type: "TOGGLE_WATCH_LATER", payload: video._id })
                 }
                 className={`${styles.pointer} material-icons`}
               >
@@ -67,7 +67,7 @@ export const VideoDetails = () => {
             <div>
               <span
                 onClick={() =>
-                  dispatch({ type: "LIKE_UNLIKE", payload: video })
+                  dispatch({ type: "LIKE_UNLIKE", payload: video._id })
                 }
                 className={`${styles.pointer} material-icons`}
               >
@@ -79,7 +79,7 @@ export const VideoDetails = () => {
             <div>
               <span
                 onClick={() =>
-                  dispatch({ type: "LIKE_UNLIKE", payload: video })
+                  dispatch({ type: "LIKE_UNLIKE", payload: video._id })
                 }
                 className={`${styles.pointer} material-icons-outlined`}
               >

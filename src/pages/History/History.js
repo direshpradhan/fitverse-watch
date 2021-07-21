@@ -1,5 +1,4 @@
 import React from "react";
-import { VideoCard } from "../../components/VideoCard/VideoCard";
 import { useData } from "../../context/DataContext";
 import { SideNav } from "../../components/SideNav/SideNav";
 import styles from "./History.module.css";
@@ -13,10 +12,10 @@ export const History = () => {
       <SideNav />
       <div className={`${styles.main}`}>
         <h2>History</h2>
-        {history.map((video) => {
+        {history.map((videoId) => {
           return (
             <div className={`${styles.card_container}`}>
-              <HistoryCard videoId={video._id} />
+              <HistoryCard videoId={videoId} />
             </div>
           );
         })}

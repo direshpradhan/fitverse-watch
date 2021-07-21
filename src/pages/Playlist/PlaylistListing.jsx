@@ -35,6 +35,7 @@ export const PlaylistListing = () => {
 
               <div className="flex" style={{ overflowX: "auto" }}>
                 {videos.map((videoId) => {
+                  console.log(videoId);
                   return (
                     <div className={`${styles.card_container}`}>
                       <PlaylistCard videoId={videoId} />

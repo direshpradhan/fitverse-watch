@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid";
 export const initialState = {
   videos: [],
   watchLater: [],
-  liked: [],
+  likedVideos: [],
   history: [],
   playlist: [
     {
@@ -26,31 +26,42 @@ export const reducer = (state, { type, payload }) => {
     case "INITIALIZE_VIDEOS":
       return { ...state, videos: payload };
 
-    case "ADD_TO_WATCH_LATER":
+    case "INITIALIZE_WATCH_LATER":
+      return { ...state, watchLater: payload };
+
+    case "INITIALIZE_LIKED_VIDEOS":
+      return { ...state, likedVideos: payload };
+
+    case "INITIALIZE_HISTORY":
+      return { ...state, history: payload };
+
+    case "INITIALIZE_PLAYLISTS":
+      return { ...state, playlist: payload };
+
+    case "TOGGLE_WATCH_LATER":
       const isInWatchLater = state.watchLater.find(
-        (video) => video._id === payload._id
+        (videoId) => videoId === payload
       );
       if (!isInWatchLater) {
         return { ...state, watchLater: [...state.watchLater, payload] };
       }
+      console.log(state.watchLater);
       return {
         ...state,
-        watchLater: state.watchLater.filter(
-          (video) => video._id !== payload._id
-        ),
+        watchLater: state.watchLater.filter((videoId) => videoId !== payload),
       };
 
     case "LIKE_UNLIKE":
-      const isInLikedVideos = state.liked.find(
-        (video) => video._id === payload._id
+      const isInLikedVideos = state.likedVideos.find(
+        (videoId) => videoId === payload
       );
 
       if (!isInLikedVideos) {
-        return { ...state, liked: [...state.liked, payload] };
+        return { ...state, likedVideos: [...state.likedVideos, payload] };
       }
       return {
         ...state,
-        liked: state.liked.filter((video) => video._id !== payload._id),
+        liked: state.likedVideos.filter((videoId) => videoId !== payload),
       };
 
     case "CREATE_PLAYLIST":
@@ -106,7 +117,7 @@ export const reducer = (state, { type, payload }) => {
 
     case "ADD_TO_HISTORY":
       const isInHistory = state.history.find(
-        (historyVideo) => historyVideo._id === payload._id
+        (historyVideoId) => historyVideoId === payload
       );
 
       if (!isInHistory) {
@@ -115,15 +126,13 @@ export const reducer = (state, { type, payload }) => {
       return {
         ...state,
         history: [payload].concat(
-          state.history.filter(
-            (historyVideo) => historyVideo._id !== payload._id
-          )
+          state.history.filter((historyVideoId) => historyVideoId !== payload)
         ),
       };
 
     case "REMOVE_FROM_HISTORY":
       const newHistory = state.history.filter(
-        (historyVideo) => historyVideo._id !== payload.videoId
+        (historyVideoId) => historyVideoId !== payload.videoId
       );
 
       return { ...state, history: newHistory };

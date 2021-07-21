@@ -7,11 +7,19 @@ const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
 
+const setupAuthHeadersForServiceCalls = (token) => {
+  if (token) {
+    return (axios.defaults.headers.common["Authorization"] = `Bearer ${token}`);
+  }
+  delete axios.defaults.headers.common["Authorization"];
+};
+
 export const AuthContextProvider = ({ children }) => {
   const { token: savedToken } = JSON.parse(localStorage?.getItem("login")) || {
     token: null,
   };
   const [token, setToken] = useState(savedToken);
+  token && setupAuthHeadersForServiceCalls(token);
   const navigate = useNavigate();
   const { state } = useLocation();
 
@@ -20,12 +28,10 @@ export const AuthContextProvider = ({ children }) => {
     return axios.post(`${API_URL}/user/login`, { email, password });
   };
 
-  const loginUser = (data) => {
-    setToken(data.token);
-    localStorage.setItem(
-      "login",
-      JSON.stringify({ login: true, token: data.token })
-    );
+  const loginUser = ({ token }) => {
+    setToken(token);
+    setupAuthHeadersForServiceCalls(token);
+    localStorage.setItem("login", JSON.stringify({ login: true, token }));
     navigate(state?.from ? state.from : "/");
   };
 
@@ -45,13 +51,18 @@ export const AuthContextProvider = ({ children }) => {
 
   const logoutUser = () => {
     setToken(null);
+    setupAuthHeadersForServiceCalls(null);
     localStorage.removeItem("login");
     navigate("/");
   };
 
   return (
     <AuthContext.Provider
-      value={{ token, loginUserWithCredentials, logoutUser }}
+      value={{
+        token,
+        loginUserWithCredentials,
+        logoutUser,
+      }}
     >
       {children}
     </AuthContext.Provider>
