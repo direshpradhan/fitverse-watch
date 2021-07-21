@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../../../context/DataContext";
+import { removeVideoFromPlaylist } from "../../../../services";
 import styles from "./PlaylistDetailsVideoCard.module.css";
 
 export const PlaylistDetailsVideoCard = ({ videoId, playlistId }) => {
@@ -40,10 +41,7 @@ export const PlaylistDetailsVideoCard = ({ videoId, playlistId }) => {
         <div className={`${styles.more_options} pointer`}>
           <div
             onClick={() => {
-              dispatch({
-                type: "ADD_TO_PLAYLIST",
-                payload: { playlistId, videoId },
-              });
+              removeVideoFromPlaylist(video?._id, playlistId, dispatch);
               setShowOptionsModal((state) => false);
             }}
           >

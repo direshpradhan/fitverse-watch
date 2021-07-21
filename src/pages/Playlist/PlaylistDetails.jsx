@@ -1,20 +1,28 @@
-import React, { useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useData } from "../../context/DataContext";
 import { PlaylistDetailsVideoCard } from "./Components/PlaylistDetailsVideoCard/PlaylistDetailsVideoCard";
 import { SideNav } from "../../components/SideNav/SideNav";
 import styles from "./PlaylistDetails.module.css";
 import { BottomNav } from "../../components/BottomNav/BottomNav";
+import { deletePlaylist, updatePlaylistName } from "../../services";
 
 export const PlaylistDetails = () => {
   const { playlistId } = useParams();
   const { playlist, dispatch } = useData();
-  const currentPlaylist = playlist.find(
-    (playlist) => playlist.id === playlistId
+  console.log(playlist);
+  const currentPlaylist = playlist?.find(
+    (playlist) => playlist._id === playlistId
   );
+  console.log(currentPlaylist);
   const [editInput, setEditInput] = useState(false);
   const [newPlaylistName, setNewPlaylistName] = useState(currentPlaylist?.name);
   const playlistInput = useRef(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setNewPlaylistName(currentPlaylist?.name);
+  }, [currentPlaylist]);
 
   const changePlaylistName = () => {
     if (!editInput) {
@@ -49,17 +57,22 @@ export const PlaylistDetails = () => {
               <span
                 onClick={() => {
                   setEditInput(() => false);
-                  dispatch({
-                    type: "RENAME_PLAYLIST",
-                    payload: { id: playlistId, name: newPlaylistName },
-                  });
+                  updatePlaylistName(playlistId, newPlaylistName, dispatch);
                 }}
                 class="material-icons-outlined pointer"
               >
                 check
               </span>
             )}
-            <span class="material-icons-outlined pointer">delete</span>
+            <span
+              onClick={() => {
+                deletePlaylist(playlistId, dispatch);
+                navigate("/playlist");
+              }}
+              class="material-icons-outlined pointer"
+            >
+              delete
+            </span>
           </div>
         </div>
         <div>

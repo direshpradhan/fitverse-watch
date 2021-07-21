@@ -15,7 +15,8 @@ export const PlaylistListing = () => {
       <div className={`${styles.main}`}>
         <h2>Playlist</h2>
         {playlist.map((playlistItem) => {
-          const { id, name, videos } = playlistItem;
+          console.log(playlistItem);
+          const { _id: id, name, videos } = playlistItem;
           return (
             <div>
               <div className={`flex justify-between`}>

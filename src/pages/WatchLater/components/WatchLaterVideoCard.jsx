@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../../context/DataContext";
+import { removeFromWatchLater } from "../../../services";
 import styles from "./WatchLaterVideoCard.module.css";
 
 export const WatchLaterVideoCard = ({ videoId }) => {
@@ -40,10 +41,7 @@ export const WatchLaterVideoCard = ({ videoId }) => {
         <div className={`${styles.more_options} pointer`}>
           <div
             onClick={() => {
-              dispatch({
-                type: "ADD_TO_WATCH_LATER",
-                payload: video,
-              });
+              removeFromWatchLater(video?._id, dispatch);
               setShowOptionsModal(() => false);
             }}
           >

@@ -4,21 +4,27 @@ import { useData } from "../../context/DataContext";
 import { SideNav } from "../../components/SideNav/SideNav";
 import styles from "./VideoDetails.module.css";
 import { BottomNav } from "../../components/BottomNav/BottomNav";
+import {
+  addToLikedVideos,
+  addToPlaylist,
+  addToWatchLater,
+  createPlaylist,
+  removeFromLikedVideos,
+  removeFromWatchLater,
+  removeVideoFromPlaylist,
+} from "../../services";
 
 export const VideoDetails = () => {
   const { videoId } = useParams();
   const [showPlaylistModal, setShowPlaylistModal] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
-  const { state, dispatch, videos, liked, watchLater } = useData();
+  const { state, dispatch, videos, likedVideos, watchLater } = useData();
   const video = videos.find((video) => video._id === videoId);
   // const { _id: id, title } = video;
-  const likedVideo = liked.find((videoID) => videoID === videoId);
+  const likedVideo = likedVideos.find((videoID) => videoID === videoId);
   const watchLaterVideo = watchLater.find((videoID) => videoID === videoId);
   const newPlaylistHandler = () => {
-    dispatch({
-      type: "CREATE_PLAYLIST",
-      payload: { playlistName, videoId: video?._id },
-    });
+    createPlaylist(videoId, playlistName, dispatch);
     setPlaylistName("");
   };
 
@@ -29,7 +35,7 @@ export const VideoDetails = () => {
         <iframe
           width="100%"
           height="100%"
-          src={`https://www.youtube.com/embed/${video._id}`}
+          src={`https://www.youtube.com/embed/${video?._id}`}
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -39,50 +45,30 @@ export const VideoDetails = () => {
         <h2 style={{ textAlign: "left" }}>{video?.title}</h2>
         <div className={`flex ${styles.options}`}>
           {!watchLaterVideo ? (
-            <div>
-              <span
-                onClick={() =>
-                  dispatch({ type: "TOGGLE_WATCH_LATER", payload: video._id })
-                }
-                className={`${styles.pointer} material-icons-outlined`}
-              >
+            <div onClick={() => addToWatchLater(video?._id, dispatch)}>
+              <span className={`${styles.pointer} material-icons-outlined`}>
                 watch_later
               </span>
               <div>Add to WatchLater</div>
             </div>
           ) : (
-            <div>
-              <span
-                onClick={() =>
-                  dispatch({ type: "TOGGLE_WATCH_LATER", payload: video._id })
-                }
-                className={`${styles.pointer} material-icons`}
-              >
+            <div onClick={() => removeFromWatchLater(video?._id, dispatch)}>
+              <span className={`${styles.pointer} material-icons`}>
                 watch_later
               </span>
-              <div>Remove from WatchLater</div>
+              <div>Remove from Watch Later</div>
             </div>
           )}{" "}
           {likedVideo ? (
-            <div>
-              <span
-                onClick={() =>
-                  dispatch({ type: "LIKE_UNLIKE", payload: video._id })
-                }
-                className={`${styles.pointer} material-icons`}
-              >
+            <div onClick={() => removeFromLikedVideos(video?._id, dispatch)}>
+              <span className={`${styles.pointer} material-icons`}>
                 thumb_up
               </span>
               <div>Unlike</div>
             </div>
           ) : (
-            <div>
-              <span
-                onClick={() =>
-                  dispatch({ type: "LIKE_UNLIKE", payload: video._id })
-                }
-                className={`${styles.pointer} material-icons-outlined`}
-              >
+            <div onClick={() => addToLikedVideos(video?._id, dispatch)}>
+              <span className={`${styles.pointer} material-icons-outlined`}>
                 thumb_up
               </span>
               <div>Like</div>
@@ -115,23 +101,30 @@ export const VideoDetails = () => {
                     <label>
                       {console.log(
                         playlistItem.videos.find(
-                          (videoId) => videoId === video._id
+                          (videoId) => videoId === video?._id
                         )
                       )}
                       <input
                         onChange={() =>
-                          dispatch({
-                            type: "ADD_TO_PLAYLIST",
-                            payload: {
-                              playlistId: playlistItem.id,
-                              videoId: video._id,
-                            },
-                          })
+                          playlistItem.videos.find(
+                            (playlistVideo) => playlistVideo === video?._id
+                          )
+                            ? removeVideoFromPlaylist(
+                                video?._id,
+                                playlistItem._id,
+                                dispatch
+                              )
+                            : addToPlaylist({
+                                videoId: video._id,
+                                playlistId: playlistItem._id,
+                                playlistName: playlistItem.name,
+                                dispatch,
+                              })
                         }
                         type="checkbox"
                         checked={
                           playlistItem.videos.find(
-                            (playlistVideo) => playlistVideo === video._id
+                            (playlistVideo) => playlistVideo === video?._id
                           )
                             ? true
                             : false

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../../context/DataContext";
+import { removeFromHistory } from "../../../services";
 import styles from "./HistoryCard.module.css";
 
 export const HistoryCard = ({ videoId }) => {
@@ -40,10 +41,7 @@ export const HistoryCard = ({ videoId }) => {
         <div className={`${styles.more_options} pointer`}>
           <div
             onClick={() => {
-              dispatch({
-                type: "REMOVE_FROM_HISTORY",
-                payload: { videoId },
-              });
+              removeFromHistory(video?._id, dispatch);
               setShowOptionsModal(() => false);
             }}
           >

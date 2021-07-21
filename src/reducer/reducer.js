@@ -59,9 +59,10 @@ export const reducer = (state, { type, payload }) => {
       if (!isInLikedVideos) {
         return { ...state, likedVideos: [...state.likedVideos, payload] };
       }
+      console.log("in liked...");
       return {
         ...state,
-        liked: state.likedVideos.filter((videoId) => videoId !== payload),
+        likedVideos: state.likedVideos.filter((videoId) => videoId !== payload),
       };
 
     case "CREATE_PLAYLIST":
@@ -69,7 +70,11 @@ export const reducer = (state, { type, payload }) => {
         ...state,
         playlist: [
           ...state.playlist,
-          { id: uuid(), name: payload.playlistName, videos: [payload.videoId] },
+          {
+            _id: payload.playlistId,
+            name: payload.playlistName,
+            videos: [payload.videoId],
+          },
         ],
       };
 
@@ -77,7 +82,7 @@ export const reducer = (state, { type, payload }) => {
       return {
         ...state,
         playlist: state.playlist.map((playlistItem) => {
-          if (playlistItem.id === payload.playlistId) {
+          if (playlistItem._id === payload.playlistId) {
             return {
               ...playlistItem,
               videos: playlistItem.videos.find(
@@ -97,7 +102,7 @@ export const reducer = (state, { type, payload }) => {
       return {
         ...state,
         playlist: state.playlist.map((playlistItem) => {
-          if (playlistItem.id === payload.id) {
+          if (playlistItem._id === payload.id) {
             return { ...playlistItem, name: payload.name };
           }
           return playlistItem;
@@ -108,11 +113,19 @@ export const reducer = (state, { type, payload }) => {
       return {
         ...state,
         playlist: state.playlist.map((playlistItem) => {
-          if (playlistItem.id === payload) {
+          if (playlistItem._id === payload) {
             return { ...playlistItem, videos: [] };
           }
           return playlistItem;
         }),
+      };
+
+    case "DELETE_PLAYLIST":
+      return {
+        ...state,
+        playlist: state.playlist.filter(
+          (playlistItem) => playlistItem._id !== payload.playlistId
+        ),
       };
 
     case "ADD_TO_HISTORY":

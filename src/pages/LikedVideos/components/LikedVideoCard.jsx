@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../../context/DataContext";
+import { removeFromLikedVideos } from "../../../services";
 import styles from "./LikedVideoCard.module.css";
 
 export const LikedVideoCard = ({ videoId }) => {
@@ -40,10 +41,7 @@ export const LikedVideoCard = ({ videoId }) => {
         <div className={`${styles.more_options} pointer`}>
           <div
             onClick={() => {
-              dispatch({
-                type: "LIKE_UNLIKE",
-                payload: video,
-              });
+              removeFromLikedVideos(video?._id, dispatch);
               setShowOptionsModal(() => false);
             }}
           >

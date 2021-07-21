@@ -1,12 +1,10 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MoreOptions } from "../../../../components/MoreOptions/MoreOptions";
 import { useData } from "../../../../context/DataContext";
+import { addToHistory } from "../../../../services";
 import styles from "./PlaylistListingPageCard.module.css";
 
 export const PlaylistCard = ({ videoId }) => {
   const { videos, dispatch } = useData();
-  const [showOptionsModal, setShowOptionsModal] = useState(false);
   const video = videos.find((video) => video._id === videoId);
   console.log(video);
   // const { id, title, image, channelImage, channelName } = video;
@@ -17,7 +15,7 @@ export const PlaylistCard = ({ videoId }) => {
     <>
       <div
         style={{ position: "relative" }}
-        onClick={() => dispatch({ type: "ADD_TO_HISTORY", payload: video })}
+        onClick={() => addToHistory(videoId, dispatch)}
       >
         <img width="100%" src={video?.image} alt="Thumbnail" />
 
@@ -36,15 +34,6 @@ export const PlaylistCard = ({ videoId }) => {
             </div>
             <div className={`${styles.name}`}>{video?.channelName}</div>
           </div>
-        </div>
-        <span
-          onClick={() => setShowOptionsModal((option) => !option)}
-          className={`${styles.more_options_icon} material-icons-outlined`}
-        >
-          more_vert
-        </span>
-        <div className={`${styles.more_options}`}>
-          {showOptionsModal && <MoreOptions id={video?._id} />}
         </div>
       </div>
     </>

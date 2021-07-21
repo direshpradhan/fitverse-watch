@@ -3,9 +3,9 @@ import { useData } from "../../context/DataContext";
 import styles from "./MoreOptions.module.css";
 
 export const MoreOptions = ({ id }) => {
-  const { watchLater, liked } = useData();
+  const { watchLater, likedVideos } = useData();
   const isInWatchLater = watchLater.find((video) => video._id === id);
-  const isInLikedVideos = liked.find((video) => video._id === id);
+  const isInLikedVideos = likedVideos.find((video) => video._id === id);
   return (
     <div className={`${styles.container}`}>
       <div>
