@@ -1,24 +1,9 @@
-import { v4 as uuid } from "uuid";
-
 export const initialState = {
   videos: [],
   watchLater: [],
   likedVideos: [],
   history: [],
-  playlist: [
-    {
-      id: "1",
-      name: "abc",
-      videos: [
-        "dI0O8TnC2d8",
-        "AXZlb-3MMYE",
-        "NK-UIRH-K_k",
-        "TvbRwuAAsxQ",
-        "_sCM0q_OTAA",
-        "Qp88IAYnvWc",
-      ],
-    },
-  ],
+  playlist: [],
 };
 
 export const reducer = (state, { type, payload }) => {
@@ -36,7 +21,10 @@ export const reducer = (state, { type, payload }) => {
       return { ...state, history: payload };
 
     case "INITIALIZE_PLAYLISTS":
-      return { ...state, playlist: payload };
+      if (payload) {
+        return { ...state, playlist: payload };
+      }
+      return state;
 
     case "TOGGLE_WATCH_LATER":
       const isInWatchLater = state.watchLater.find(
@@ -66,6 +54,8 @@ export const reducer = (state, { type, payload }) => {
       };
 
     case "CREATE_PLAYLIST":
+      console.log(state.playlist);
+      console.log(payload.playlistName);
       return {
         ...state,
         playlist: [

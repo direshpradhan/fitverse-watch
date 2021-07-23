@@ -14,7 +14,7 @@ export const PlaylistListing = () => {
       <SideNav />
       <div className={`${styles.main}`}>
         <h2>Playlist</h2>
-        {playlist.map((playlistItem) => {
+        {playlist?.map((playlistItem) => {
           console.log(playlistItem);
           const { _id: id, name, videos } = playlistItem;
           return (

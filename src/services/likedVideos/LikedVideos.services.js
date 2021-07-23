@@ -3,10 +3,11 @@ import { API_URL } from "../../constants";
 
 export const addToLikedVideos = async (videoId, dispatch) => {
   try {
+    console.log("entered add to liked.....");
     const response = await axios.post(`${API_URL}/liked-videos`, {
       video: { id: videoId },
     });
-
+    console.log(response);
     if (response.status === 200) {
       dispatch({ type: "LIKE_UNLIKE", payload: videoId });
     }

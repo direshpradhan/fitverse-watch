@@ -11,6 +11,7 @@ import { Library } from "./pages/Library/Library";
 import { PlaylistDetails } from "./pages/Playlist/PlaylistDetails";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { Login } from "./pages/Login/Login";
+import { Signup } from "./pages/Signup/Signup";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/video/:videoId" element={<VideoDetails />} />
         <Route path="/library" element={<Library />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <PrivateRoute path="/playlist" element={<PlaylistListing />} />
         <PrivateRoute
           path="playlist/:playlistId"

@@ -23,6 +23,7 @@ export const VideoDetails = () => {
   // const { _id: id, title } = video;
   const likedVideo = likedVideos.find((videoID) => videoID === videoId);
   const watchLaterVideo = watchLater.find((videoID) => videoID === videoId);
+
   const newPlaylistHandler = () => {
     createPlaylist(videoId, playlistName, dispatch);
     setPlaylistName("");

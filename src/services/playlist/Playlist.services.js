@@ -8,6 +8,7 @@ export const createPlaylist = async (videoId, playlistName, dispatch) => {
     });
     console.log(response.data);
     if (response.status === 200) {
+      console.log(response.data.newPlaylist._id);
       dispatch({
         type: "CREATE_PLAYLIST",
         payload: {

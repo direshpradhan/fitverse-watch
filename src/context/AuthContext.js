@@ -2,6 +2,7 @@ import axios from "axios";
 import { createContext, useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { API_URL } from "../constants";
+import { signupService } from "../services";
 
 const AuthContext = createContext();
 
@@ -56,12 +57,25 @@ export const AuthContextProvider = ({ children }) => {
     navigate("/");
   };
 
+  const signupUser = async (name, email, password) => {
+    try {
+      const signupResponse = await signupService(name, email, password);
+      console.log(signupResponse);
+      if (signupResponse.status === 201) {
+        loginUser(signupResponse.data);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
         token,
         loginUserWithCredentials,
         logoutUser,
+        signupUser,
       }}
     >
       {children}

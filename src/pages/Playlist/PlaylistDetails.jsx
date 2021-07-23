@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useData } from "../../context/DataContext";
 import { PlaylistDetailsVideoCard } from "./Components/PlaylistDetailsVideoCard/PlaylistDetailsVideoCard";
 import { SideNav } from "../../components/SideNav/SideNav";

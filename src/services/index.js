@@ -15,3 +15,4 @@ export {
   clearPlaylist,
   deletePlaylist,
 } from "./playlist/Playlist.services";
+export { signupService } from "./signup/Signup.services";
