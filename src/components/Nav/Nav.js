@@ -18,11 +18,11 @@ export const Nav = () => {
         </Link>
       ) : ( */}
       {token ? (
-        <button className="btn" onClick={() => logoutUser()}>
+        <button className="btn btn-primary" onClick={() => logoutUser()}>
           Logout
         </button>
       ) : (
-        <button className="btn" onClick={() => navigate("/login")}>
+        <button className="btn btn-primary" onClick={() => navigate("/login")}>
           Login
         </button>
       )}

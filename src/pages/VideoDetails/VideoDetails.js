@@ -43,7 +43,7 @@ export const VideoDetails = () => {
           allowFullScreen="allowfullscreen"
           allowAutoplay="autoplay"
         ></iframe>
-        <h2 style={{ textAlign: "left" }}>{video?.title}</h2>
+        <p className={`${styles.title}`}>{video?.title}</p>
         <div className={`flex ${styles.options}`}>
           {!watchLaterVideo ? (
             <div onClick={() => addToWatchLater(video?._id, dispatch)}>
