@@ -24,10 +24,15 @@ export const VideoCard = ({ videoId }) => {
     // <Link className={`${styles.link}`} to={`/video/${id}`}>
     <>
       <div
-        style={{ position: "relative" }}
+        className={`${styles.main}`}
         onClick={() => addToHistory(video._id, dispatch)}
       >
-        <img width="100%" src={image} alt="Thumbnail" />
+        <img
+          className={`${styles.image}`}
+          width="100%"
+          src={image}
+          alt="Thumbnail"
+        />
 
         <div className={`${styles.video_details} flex`}>
           <img

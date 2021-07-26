@@ -3,67 +3,27 @@
 }
 
 .card_container {
-  margin: 1rem 0.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
 }
 
 .videos_container {
-  width: 90%;
+  width: 95%;
   margin: 0 auto;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.sidebar {
-  display: none;
-
-  /* width: 15%;
-  list-style: none;
-  justify-self: center; */
-}
-
-/* .sidebar_item {
-  font-size: 0.95rem;
-  align-items: center;
-  margin: 0 0.5rem 0.5rem 1.5rem;
-} */
-
-/* .sidebar_item:hover {
-  font-weight: bold;
-} */
-
-/* .sidebar_item > span {
-  margin-right: 1rem;
-} */
-
-/* .sidebar > ul {
-  margin-block-start: 0;
-  margin-block-end: 0;
-  padding-inline-start: 0;
-} */
-
-.options_menu {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: 1;
-  background-color: white;
-  width: 100vw;
-  height: 7.5vh;
-}
-
-.active {
-  background-color: #f3f4f6;
-  color: var(--primary-color);
-  font-weight: 600;
+@media screen and (min-width: 460px) {
+  .card_container {
+    width: 40%;
+    margin: 0rem 0.5rem 1rem;
+  }
 }
 
 @media screen and (min-width: 768px) {
   .card_container {
     width: 30%;
-    margin: 0rem 0.5rem;
   }
 
   .videos_container {
@@ -74,56 +34,7 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .options_menu {
-    display: none;
-  }
-
   .videos_container {
     margin-left: 17.5vw;
-  }
-
-  .sidebar {
-    display: block;
-    position: fixed;
-    top: 12vh;
-    width: 15vw;
-    height: 100vh;
-    list-style: none;
-    border-right: 1px solid #d7d7d7;
-  }
-
-  .sidebar_item {
-    font-size: 1rem;
-    align-items: center;
-    padding: 0.75rem 1rem 0.75rem 1.5rem;
-    cursor: pointer;
-  }
-
-  .sidebar_item > span {
-    color: #606060;
-  }
-
-  .sidebar_item:hover {
-    /* background-color: #e5e7eb; */
-    background-color: #f3f4f6;
-    color: var(--primary-color);
-    font-weight: 600;
-  }
-
-  .sidebar_item:hover > span {
-    color: var(--primary-color);
-  }
-
-  .sidebar_item > span {
-    margin-right: 1rem;
-    color: #606060;
-  }
-
-  .sidebar > ul {
-    margin-block-start: 0;
-    margin-block-end: 0;
-    padding-inline-start: 0;
-    margin-top: 1rem;
-    height: 100vh;
   }
 }
