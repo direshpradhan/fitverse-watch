@@ -24,7 +24,8 @@ export const VideoDetails = () => {
   const likedVideo = likedVideos.find((videoID) => videoID === videoId);
   const watchLaterVideo = watchLater.find((videoID) => videoID === videoId);
 
-  const newPlaylistHandler = () => {
+  const newPlaylistHandler = (event) => {
+    event.preventDefault();
     createPlaylist(videoId, playlistName, dispatch);
     setPlaylistName("");
   };
@@ -95,17 +96,12 @@ export const VideoDetails = () => {
               onClick={(event) => event.stopPropagation()}
               className={`${styles.modal}`}
             >
-              <h4>Playlists</h4>
-              {state?.playlist?.map((playlistItem) => {
-                return (
-                  <div>
-                    <label>
-                      {console.log(
-                        playlistItem.videos.find(
-                          (videoId) => videoId === video?._id
-                        )
-                      )}
+              <div className={`${styles.playlist_list}`}>
+                {state?.playlist?.map((playlistItem) => {
+                  return (
+                    <div className={`${styles.playlist_checkbox}`}>
                       <input
+                        id="playlistName"
                         onChange={() =>
                           playlistItem.videos.find(
                             (playlistVideo) => playlistVideo === video?._id
@@ -131,17 +127,40 @@ export const VideoDetails = () => {
                             : false
                         }
                       />
-                      {playlistItem.name}
-                    </label>
-                  </div>
-                );
-              })}
-              <input
-                onChange={(event) => setPlaylistName(event.target.value)}
-                type="text"
-                value={playlistName}
-              />{" "}
-              <button onClick={newPlaylistHandler}>Add</button>
+                      <label
+                        className={`${styles.label}`}
+                        htmlFor="playlistName"
+                      >
+                        {playlistItem.name}
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+              <form
+                className={`${styles.playlist_form}`}
+                onSubmit={(event) => newPlaylistHandler(event)}
+              >
+                <input
+                  className={`${styles.input}`}
+                  onChange={(event) => setPlaylistName(event.target.value)}
+                  type="text"
+                  value={playlistName}
+                />{" "}
+                <button
+                  type="submit"
+                  className={`${styles.add_button} pointer`}
+                >
+                  Add
+                </button>
+              </form>
+              <div className="divider"></div>
+              <p
+                className={`${styles.close_button} pointer`}
+                onClick={() => setShowPlaylistModal(() => false)}
+              >
+                Close
+              </p>
             </div>
           </div>
         )}

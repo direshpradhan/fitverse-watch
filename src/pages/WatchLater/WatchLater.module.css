@@ -1,6 +1,5 @@
 .main {
-  width: 40vw;
-  /* margin-left: 27.5vw; */
+  width: 85vw;
   margin: 0 auto;
 }
 
@@ -11,12 +10,16 @@
 .card_container {
   display: inline-flex;
   flex-wrap: wrap;
-  margin-right: 2rem;
-  /* width: 30%; */
 }
 
 @media screen and (min-width: 768px) {
-  /* .card_container {
-    width: 30%;
-  } */
+  .main {
+    width: 50vw;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .main {
+    width: 35vw;
+  }
 }
