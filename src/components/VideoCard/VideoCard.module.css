@@ -54,9 +54,17 @@
 
 .more_options {
   position: absolute;
-  bottom: -1rem;
-  right: -1rem;
+  bottom: 0.5rem;
+  right: 1rem;
   z-index: 1;
+}
+
+.container {
+  background-color: #f3f4f6;
+  width: max-content;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
 }
 
 @media screen and (min-width: 460px) {
