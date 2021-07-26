@@ -1,5 +1,5 @@
 .main {
-  width: 70vw;
+  width: 90vw;
   margin: 0 auto;
 }
 
@@ -7,16 +7,31 @@
   margin-bottom: 2rem;
 }
 
+.playlist_container {
+  margin-bottom: 2rem;
+}
+
+.playlist_video_container {
+  overflow-x: auto;
+}
+
 .card_container {
   position: relative;
-  margin: 1rem 2rem 1rem 0;
-  min-width: 65%;
+  margin: 1rem;
+  margin-left: 0;
+  min-width: 175px;
+  height: 100%;
 }
 
 .playlist_name {
   font-weight: 500;
   border: none;
   font-size: 1.2rem;
+}
+
+.video_length {
+  font-size: 0.95rem;
+  color: var(--gray);
 }
 
 .more_options_icon {
@@ -33,12 +48,17 @@
 
 @media screen and (min-width: 768px) {
   .card_container {
-    min-width: 25%;
+    min-width: 225px;
+  }
+
+  .main {
+    width: 75vw;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .main {
+    width: 65vw;
     margin-left: 22.5vw;
   }
 }

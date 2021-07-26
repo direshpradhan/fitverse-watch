@@ -15,9 +15,10 @@ export const PlaylistCard = ({ videoId }) => {
     <>
       <div
         style={{ position: "relative" }}
+        className={`${styles.main}`}
         onClick={() => addToHistory(videoId, dispatch)}
       >
-        <img width="100%" src={video?.image} alt="Thumbnail" />
+        <img className={`${styles.image}`} src={video?.image} alt="Thumbnail" />
 
         <div className={`${styles.video_details} flex`}>
           <img

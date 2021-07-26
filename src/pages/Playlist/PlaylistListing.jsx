@@ -18,14 +18,14 @@ export const PlaylistListing = () => {
           console.log(playlistItem);
           const { _id: id, name, videos } = playlistItem;
           return (
-            <div>
+            <div className={`${styles.playlist_container}`}>
               <div className={`flex justify-between`}>
-                <input
-                  className={`${styles.playlist_name}`}
-                  type="text"
-                  readOnly
-                  value={name}
-                />
+                <div>
+                  <p className={`${styles.playlist_name}`}>{name}</p>
+                  <span className={`${styles.video_length}`}>
+                    {videos.length} videos
+                  </span>
+                </div>
                 <span
                   onClick={() => navigate(`/playlist/${id}`)}
                   className={`material-icons-outlined pointer`}
@@ -33,8 +33,7 @@ export const PlaylistListing = () => {
                   open_in_new
                 </span>
               </div>
-
-              <div className="flex" style={{ overflowX: "auto" }}>
+              <div className={`flex ${styles.playlist_video_container}`}>
                 {videos.map((videoId) => {
                   console.log(videoId);
                   return (
@@ -44,6 +43,7 @@ export const PlaylistListing = () => {
                   );
                 })}
               </div>
+              <div className="divider"></div>
             </div>
           );
         })}
