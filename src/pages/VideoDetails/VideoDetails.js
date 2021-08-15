@@ -13,9 +13,12 @@ import {
   removeFromWatchLater,
   removeVideoFromPlaylist,
 } from "../../services";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export const VideoDetails = () => {
   const { videoId } = useParams();
+  const { token } = useAuth();
   const [showPlaylistModal, setShowPlaylistModal] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
   const { state, dispatch, videos, likedVideos, watchLater } = useData();
@@ -23,6 +26,7 @@ export const VideoDetails = () => {
   // const { _id: id, title } = video;
   const likedVideo = likedVideos.find((videoID) => videoID === videoId);
   const watchLaterVideo = watchLater.find((videoID) => videoID === videoId);
+  const navigate = useNavigate();
 
   const newPlaylistHandler = (event) => {
     event.preventDefault();
@@ -47,14 +51,24 @@ export const VideoDetails = () => {
         <p className={`${styles.title}`}>{video?.title}</p>
         <div className={`flex ${styles.options}`}>
           {!watchLaterVideo ? (
-            <div onClick={() => addToWatchLater(video?._id, dispatch)}>
+            <div
+              className={`flex flex-col`}
+              onClick={() =>
+                token
+                  ? addToWatchLater(video?._id, dispatch)
+                  : navigate("/login")
+              }
+            >
               <span className={`${styles.pointer} material-icons-outlined`}>
                 watch_later
               </span>
               <div>Add to WatchLater</div>
             </div>
           ) : (
-            <div onClick={() => removeFromWatchLater(video?._id, dispatch)}>
+            <div
+              className={`flex flex-col`}
+              onClick={() => removeFromWatchLater(video?._id, dispatch)}
+            >
               <span className={`${styles.pointer} material-icons`}>
                 watch_later
               </span>
@@ -62,25 +76,39 @@ export const VideoDetails = () => {
             </div>
           )}{" "}
           {likedVideo ? (
-            <div onClick={() => removeFromLikedVideos(video?._id, dispatch)}>
+            <div
+              className={`flex flex-col`}
+              onClick={() => removeFromLikedVideos(video?._id, dispatch)}
+            >
               <span className={`${styles.pointer} material-icons`}>
                 thumb_up
               </span>
               <div>Unlike</div>
             </div>
           ) : (
-            <div onClick={() => addToLikedVideos(video?._id, dispatch)}>
+            <div
+              className={`flex flex-col`}
+              onClick={() =>
+                token
+                  ? addToLikedVideos(video?._id, dispatch)
+                  : navigate("/login")
+              }
+            >
               <span className={`${styles.pointer} material-icons-outlined`}>
                 thumb_up
               </span>
               <div>Like</div>
             </div>
           )}
-          <div>
-            <span
-              onClick={() => setShowPlaylistModal((state) => !state)}
-              className={`${styles.pointer} material-icons`}
-            >
+          <div
+            className={`flex flex-col`}
+            onClick={() =>
+              token
+                ? setShowPlaylistModal((state) => !state)
+                : navigate("/login")
+            }
+          >
+            <span className={`${styles.pointer} material-icons`}>
               playlist_add
             </span>
             <div>Add to Playlist</div>

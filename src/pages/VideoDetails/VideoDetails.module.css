@@ -84,13 +84,16 @@
 }
 
 .options {
-  justify-content: space-evenly;
+  margin-top: 1rem;
   margin-bottom: 5rem;
 }
 
 .options > div {
+  width: 33%;
   margin-bottom: 2.5rem;
   font-weight: 600;
+  align-items: center;
+  text-align: center;
 }
 
 @media screen and (min-width: 768px) {
