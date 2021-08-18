@@ -35,7 +35,10 @@ export const addToPlaylist = async ({
     });
 
     if (response.status === 200) {
-      dispatch({ type: "ADD_TO_PLAYLIST", payload: { playlistId, videoId } });
+      dispatch({
+        type: "TOGGLE_PLAYLIST_VIDEO",
+        payload: { playlistId, videoId },
+      });
     }
   } catch (error) {
     console.error(error.message);
@@ -74,7 +77,10 @@ export const removeVideoFromPlaylist = async (
     );
 
     if (response.status === 200) {
-      dispatch({ type: "ADD_TO_PLAYLIST", payload: { playlistId, videoId } });
+      dispatch({
+        type: "TOGGLE_PLAYLIST_VIDEO",
+        payload: { playlistId, videoId },
+      });
     }
   } catch (error) {
     console.error(error.message);

@@ -68,7 +68,7 @@ export const reducer = (state, { type, payload }) => {
         ],
       };
 
-    case "ADD_TO_PLAYLIST":
+    case "TOGGLE_PLAYLIST_VIDEO":
       return {
         ...state,
         playlist: state.playlist.map((playlistItem) => {
