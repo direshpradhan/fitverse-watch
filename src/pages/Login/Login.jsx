@@ -14,7 +14,7 @@ export const Login = () => {
 
   return (
     <div className={`flex flex-col justify-center ${styles.main}`}>
-      <h2 className={`${styles.title}`}>Login</h2>
+      <h2 className={`${styles.title}`}>Login to Fitverse Watch</h2>
       <form onSubmit={(event) => loginHandler(event)}>
         <input
           className={`${styles.input}`}
@@ -38,9 +38,19 @@ export const Login = () => {
         >
           Login
         </button>
+        <p
+          // type="submit"
+          onClick={() => loginUserWithCredentials("test@test.com", "test@123")}
+          className={`text-centre pointer ${styles.guest}`}
+        >
+          Login as Guest
+        </p>
       </form>
       <p className={`text-centre`}>
-        Don't have an account? <a href="/signup">Sign up</a>
+        Don't have an account?{" "}
+        <a href="/signup" className={`${styles.signup}`}>
+          Sign up!
+        </a>
       </p>
     </div>
   );
