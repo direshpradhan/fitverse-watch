@@ -4,6 +4,7 @@ import { SideNav } from "../../components/SideNav/SideNav";
 import styles from "./History.module.css";
 import { HistoryCard } from "./components/HistoryCard";
 import { BottomNav } from "../../components/BottomNav/BottomNav";
+import { Loader } from "../../components/Loader/Loader";
 
 export const History = () => {
   const { history } = useData();
@@ -11,14 +12,20 @@ export const History = () => {
     <div>
       <SideNav />
       <div className={`${styles.main}`}>
-        <h2>History</h2>
-        {history.map((videoId) => {
-          return (
-            <div className={`${styles.card_container}`}>
-              <HistoryCard videoId={videoId} />
-            </div>
-          );
-        })}
+        {history.length !== 0 ? (
+          <>
+            <h2>History</h2>
+            {history.map((videoId) => {
+              return (
+                <div className={`${styles.card_container}`}>
+                  <HistoryCard videoId={videoId} />
+                </div>
+              );
+            })}
+          </>
+        ) : (
+          <Loader />
+        )}
       </div>
       <BottomNav />
     </div>
