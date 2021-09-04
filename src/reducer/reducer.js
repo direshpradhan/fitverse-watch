@@ -27,7 +27,7 @@ export const reducer = (state, { type, payload }) => {
       return state;
 
     case "TOGGLE_WATCH_LATER":
-      const isInWatchLater = state.watchLater.find(
+      const isInWatchLater = state.watchLater?.find(
         (videoId) => videoId === payload
       );
       if (!isInWatchLater) {
@@ -40,7 +40,7 @@ export const reducer = (state, { type, payload }) => {
       };
 
     case "LIKE_UNLIKE":
-      const isInLikedVideos = state.likedVideos.find(
+      const isInLikedVideos = state.likedVideos?.find(
         (videoId) => videoId === payload
       );
 
@@ -119,7 +119,7 @@ export const reducer = (state, { type, payload }) => {
       };
 
     case "ADD_TO_HISTORY":
-      const isInHistory = state.history.find(
+      const isInHistory = state.history?.find(
         (historyVideoId) => historyVideoId === payload
       );
 

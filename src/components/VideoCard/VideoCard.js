@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import { useData } from "../../context/DataContext";
 import {
-  addToHistory,
+  // addToHistory,
   addToLikedVideos,
   addToWatchLater,
   removeFromLikedVideos,
@@ -12,6 +13,7 @@ import styles from "./VideoCard.module.css";
 
 export const VideoCard = ({ videoId }) => {
   const { dispatch, videos, watchLater, likedVideos } = useData();
+  const { token } = useAuth();
   const [showOptionsModal, setShowOptionsModal] = useState(false);
   const video = videos.find((video) => video._id === videoId);
   const {
@@ -31,10 +33,10 @@ export const VideoCard = ({ videoId }) => {
     <>
       <div
         className={`${styles.main}`}
-        onClick={() => {
-          addToHistory(video._id, dispatch);
-          // showOptionsModal && setShowOptionsModal(() => false);
-        }}
+        // onClick={() => {
+        //   addToHistory(video._id, dispatch);
+        //   // showOptionsModal && setShowOptionsModal(() => false);
+        // }}
       >
         <img
           className={`${styles.image} pointer`}
@@ -71,7 +73,7 @@ export const VideoCard = ({ videoId }) => {
         <div className={`${styles.more_options}`}>
           {showOptionsModal && (
             <div className={`${styles.container}`}>
-              {isInWatchLater ? (
+              {token && isInWatchLater ? (
                 <div
                   className="pointer"
                   onClick={() => removeFromWatchLater(id, dispatch)}
@@ -81,12 +83,14 @@ export const VideoCard = ({ videoId }) => {
               ) : (
                 <div
                   className="pointer"
-                  onClick={() => addToWatchLater(id, dispatch)}
+                  onClick={() =>
+                    token ? addToWatchLater(id, dispatch) : navigate("/login")
+                  }
                 >
                   Add to Watch Later
                 </div>
               )}
-              {isInLikedVideos ? (
+              {token && isInLikedVideos ? (
                 <div
                   onClick={() => removeFromLikedVideos(id, dispatch)}
                   className="pointer"
@@ -95,7 +99,9 @@ export const VideoCard = ({ videoId }) => {
                 </div>
               ) : (
                 <div
-                  onClick={() => addToLikedVideos(id, dispatch)}
+                  onClick={() =>
+                    token ? addToLikedVideos(id, dispatch) : navigate("/login")
+                  }
                   className="pointer"
                 >
                   Add to Liked Videos

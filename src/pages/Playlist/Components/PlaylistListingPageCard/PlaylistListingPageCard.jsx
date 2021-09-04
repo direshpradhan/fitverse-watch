@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../../../context/DataContext";
-import { addToHistory } from "../../../../services";
+// import { addToHistory } from "../../../../services";
 import styles from "./PlaylistListingPageCard.module.css";
 
 export const PlaylistCard = ({ videoId }) => {
-  const { videos, dispatch } = useData();
+  const { videos } = useData();
   const video = videos.find((video) => video._id === videoId);
   console.log(video);
   // const { id, title, image, channelImage, channelName } = video;
@@ -16,7 +16,7 @@ export const PlaylistCard = ({ videoId }) => {
       <div
         style={{ position: "relative" }}
         className={`${styles.main}`}
-        onClick={() => addToHistory(videoId, dispatch)}
+        // onClick={() => addToHistory(videoId, dispatch)}
       >
         <img className={`${styles.image}`} src={video?.image} alt="Thumbnail" />
 

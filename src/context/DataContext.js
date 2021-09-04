@@ -27,34 +27,29 @@ export const DataContextProvider = ({ children }) => {
 
         if (token) {
           const watchLaterResponse = await axios.get(`${API_URL}/watch-later`);
-          console.log(watchLaterResponse.data);
-          const likedVideosResponse = await axios.get(
-            `${API_URL}/liked-videos`
-          );
-          console.log(likedVideosResponse.data);
-          const historyResponse = await axios.get(`${API_URL}/history`);
-          console.log(historyResponse.data);
-          const playlistResponse = await axios.get(`${API_URL}/playlist`);
-          console.log(playlistResponse.data);
-
           watchLaterResponse.status === 200 &&
             dispatch({
               type: "INITIALIZE_WATCH_LATER",
               payload: watchLaterResponse.data.videos,
             });
 
+          const likedVideosResponse = await axios.get(
+            `${API_URL}/liked-videos`
+          );
           likedVideosResponse.status === 200 &&
             dispatch({
               type: "INITIALIZE_LIKED_VIDEOS",
               payload: likedVideosResponse.data.videos,
             });
 
+          const historyResponse = await axios.get(`${API_URL}/history`);
           historyResponse.status === 200 &&
             dispatch({
               type: "INITIALIZE_HISTORY",
               payload: historyResponse.data.videos,
             });
 
+          const playlistResponse = await axios.get(`${API_URL}/playlist`);
           playlistResponse.status === 200 &&
             dispatch({
               type: "INITIALIZE_PLAYLISTS",

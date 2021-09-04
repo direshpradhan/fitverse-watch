@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import styles from "./Login.module.css";
 
 export const Login = () => {
-  const { loginUserWithCredentials } = useAuth();
+  const { loginUserWithCredentials, token } = useAuth();
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+  const navigate = useNavigate();
 
   const loginHandler = (event) => {
     event.preventDefault();
     loginUserWithCredentials(email, password);
   };
+
+  useEffect(() => {
+    token && navigate("/");
+  }, [token, navigate]);
 
   return (
     <div className={`flex flex-col justify-center ${styles.main}`}>
