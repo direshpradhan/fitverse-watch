@@ -13,10 +13,14 @@ export const WatchLater = () => {
     <div>
       <SideNav />
       <div className={`${styles.main}`}>
-        {watchLater.length !== 0 ? (
+        {watchLater?.length === 0 ? (
+          <div className={`${styles.text}`}>No watch later videos</div>
+        ) : watchLater === null ? (
+          <Loader />
+        ) : (
           <>
             <h2>Watch Later</h2>
-            {watchLater.map((videoId) => {
+            {watchLater?.map((videoId) => {
               console.log(videoId);
               return (
                 <div className={`${styles.card_container}`}>
@@ -25,8 +29,6 @@ export const WatchLater = () => {
               );
             })}
           </>
-        ) : (
-          <Loader />
         )}
       </div>
       <BottomNav />

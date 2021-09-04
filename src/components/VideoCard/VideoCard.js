@@ -23,8 +23,8 @@ export const VideoCard = ({ videoId }) => {
     publishedOn,
     statistics: { viewCount },
   } = video;
-  const isInWatchLater = watchLater.find((videoID) => videoID === id);
-  const isInLikedVideos = likedVideos.find((videoID) => videoID === id);
+  const isInWatchLater = watchLater?.find((videoID) => videoID === id);
+  const isInLikedVideos = likedVideos?.find((videoID) => videoID === id);
   const navigate = useNavigate();
 
   return (
@@ -33,14 +33,15 @@ export const VideoCard = ({ videoId }) => {
         className={`${styles.main}`}
         onClick={() => {
           addToHistory(video._id, dispatch);
-          showOptionsModal && setShowOptionsModal(() => false);
+          // showOptionsModal && setShowOptionsModal(() => false);
         }}
       >
         <img
-          className={`${styles.image}`}
+          className={`${styles.image} pointer`}
           width="100%"
           src={image}
           alt="Thumbnail"
+          onClick={() => navigate(`/video/${id}`)}
         />
 
         <div className={`${styles.video_details} flex`}>

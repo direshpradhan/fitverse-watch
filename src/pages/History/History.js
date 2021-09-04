@@ -12,10 +12,14 @@ export const History = () => {
     <div>
       <SideNav />
       <div className={`${styles.main}`}>
-        {history.length !== 0 ? (
+        {history?.length === 0 ? (
+          <div className={`${styles.text}`}>No videos in History</div>
+        ) : history === null ? (
+          <Loader />
+        ) : (
           <>
             <h2>History</h2>
-            {history.map((videoId) => {
+            {history?.map((videoId) => {
               return (
                 <div className={`${styles.card_container}`}>
                   <HistoryCard videoId={videoId} />
@@ -23,8 +27,6 @@ export const History = () => {
               );
             })}
           </>
-        ) : (
-          <Loader />
         )}
       </div>
       <BottomNav />

@@ -1,9 +1,9 @@
 export const initialState = {
   videos: [],
-  watchLater: [],
-  likedVideos: [],
-  history: [],
-  playlist: [],
+  watchLater: null,
+  likedVideos: null,
+  history: null,
+  playlist: null,
 };
 
 export const reducer = (state, { type, payload }) => {

@@ -8,15 +8,22 @@ import { Loader } from "../../components/Loader/Loader";
 
 export const LikedVideos = () => {
   const { likedVideos } = useData();
+  console.log(likedVideos);
 
   return (
     <div>
       <SideNav />
       <div className={`${styles.main}`}>
-        {likedVideos.length !== 0 ? (
+        {likedVideos?.length === 0 ? (
+          <>
+            <div className={`${styles.text}`}>No liked videos</div>
+          </>
+        ) : likedVideos === null ? (
+          <Loader />
+        ) : (
           <>
             <h2>Liked Videos</h2>
-            {likedVideos.map((videoId) => {
+            {likedVideos?.map((videoId) => {
               return (
                 <div className={`${styles.card_container}`}>
                   <LikedVideoCard videoId={videoId} />
@@ -24,8 +31,6 @@ export const LikedVideos = () => {
               );
             })}
           </>
-        ) : (
-          <Loader />
         )}
       </div>
       <BottomNav />

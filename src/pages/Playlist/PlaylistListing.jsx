@@ -14,7 +14,13 @@ export const PlaylistListing = () => {
     <div className="flex">
       <SideNav />
       <div className={`${styles.main}`}>
-        {playlist.length !== 0 ? (
+        {playlist === null && <Loader />}
+
+        {playlist?.length === 0 ? (
+          <div className={`${styles.text}`}>No Playlists</div>
+        ) : playlist === null ? (
+          <Loader />
+        ) : (
           <>
             <h2>Playlist</h2>
             {playlist?.map((playlistItem) => {
@@ -50,8 +56,6 @@ export const PlaylistListing = () => {
               );
             })}
           </>
-        ) : (
-          <Loader />
         )}
       </div>
       <BottomNav />
