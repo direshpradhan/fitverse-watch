@@ -10,7 +10,7 @@ export const Nav = () => {
   return (
     <nav className={`${styles.nav} `}>
       <Link className={`${styles.link}`} to="/">
-        <div>Fitverse</div>
+        <h1>Fitverse</h1>
       </Link>
       {/* {!login ? (
         <Link style={{ color: "white" }} to="/login">
@@ -18,11 +18,17 @@ export const Nav = () => {
         </Link>
       ) : ( */}
       {token ? (
-        <button className="btn btn-primary" onClick={() => logoutUser()}>
+        <button
+          className={`btn btn-primary ${styles.button_text}`}
+          onClick={() => logoutUser()}
+        >
           Logout
         </button>
       ) : (
-        <button className="btn btn-primary" onClick={() => navigate("/login")}>
+        <button
+          className={`btn btn-primary ${styles.button_text}`}
+          onClick={() => navigate("/login")}
+        >
           Login
         </button>
       )}
