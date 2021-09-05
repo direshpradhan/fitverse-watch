@@ -38,11 +38,11 @@
 .more_options {
   position: absolute;
   width: 15rem;
-  background-color: #f3f4f6;
+  background-color: #e5e7eb;
   z-index: 1;
   right: 1rem;
   top: 1.75rem;
-  padding: 0.5rem;
+  padding: 0.5rem 0.75rem;
   font-size: 1.1rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0.25rem;

@@ -44,13 +44,14 @@
 
 .add_button {
   padding: 0.25rem 0.75rem;
-  background: transparent;
+  background: var(--primary-color);
+  color: white;
   border: none;
   font-size: 0.95rem;
 }
 
 .add_button:hover {
-  background-color: var(--gray);
+  opacity: 0.9;
 }
 
 .modal > h4 {
