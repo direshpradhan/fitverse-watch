@@ -24,6 +24,16 @@ export const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
+  axios.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      if (error.response.status === 403) {
+        logoutUser();
+      }
+      return Promise.reject(error);
+    }
+  );
+
   const loginService = (email, password) => {
     console.log("entered service");
     return axios.post(`${API_URL}/user/login`, { email, password });
