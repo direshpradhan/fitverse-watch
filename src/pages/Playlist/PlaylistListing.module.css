@@ -1,0 +1,73 @@
+.main {
+  width: 90vw;
+  margin: 0 auto;
+}
+
+.main > h2 {
+  margin-bottom: 2rem;
+}
+
+.playlist_container {
+  margin-bottom: 2rem;
+}
+
+.playlist_video_container {
+  overflow-x: auto;
+}
+
+.card_container {
+  position: relative;
+  margin: 1rem;
+  margin-left: 0;
+  min-width: 175px;
+  height: 100%;
+}
+
+.playlist_name {
+  font-weight: 500;
+  border: none;
+  font-size: 1.2rem;
+}
+
+.video_length {
+  font-size: 0.95rem;
+  color: var(--gray);
+}
+
+.more_options_icon {
+  position: absolute;
+  right: -0.25rem;
+  bottom: 4.1rem;
+}
+
+.more_options {
+  position: absolute;
+  bottom: 0rem;
+  right: 0;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+@media screen and (min-width: 768px) {
+  .card_container {
+    min-width: 225px;
+  }
+
+  .main {
+    width: 75vw;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .main {
+    width: 65vw;
+    margin-left: 22.5vw;
+  }
+}

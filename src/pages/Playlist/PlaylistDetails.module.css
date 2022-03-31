@@ -1,0 +1,26 @@
+.main {
+  width: 95vw;
+  margin: 1rem auto 4rem;
+}
+
+.title {
+  width: 100%;
+  margin: 2rem auto;
+}
+
+.playlist_name {
+  width: 100%;
+  padding: 0.25rem 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border: none;
+}
+
+.videos_container {
+}
+
+@media screen and (min-width: 1024px) {
+  .main {
+    width: 40vw;
+  }
+}

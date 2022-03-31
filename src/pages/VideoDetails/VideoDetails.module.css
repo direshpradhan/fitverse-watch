@@ -1,0 +1,113 @@
+.main_container {
+  width: 95%;
+  height: 35vh;
+  margin: 0 auto;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.title {
+  text-align: left;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.modal_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  width: 17rem;
+  background-color: white;
+  padding: 0 0.75rem;
+  z-index: 2;
+}
+
+.input {
+  padding: 0.25rem;
+  border: 1px solid var(--dark-gray);
+  margin-right: 0.5rem;
+}
+
+.add_button {
+  padding: 0.25rem 0.75rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  font-size: 0.95rem;
+}
+
+.add_button:hover {
+  opacity: 0.9;
+}
+
+.modal > h4 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin: 0.5rem;
+}
+
+.modal > div {
+  margin-bottom: 1rem;
+}
+
+.label {
+  font-size: 1.1rem;
+  margin-left: 0.75rem;
+}
+
+.playlist_list {
+  margin: 1rem 0 1.5rem;
+}
+
+.playlist_checkbox {
+  margin-bottom: 0.5rem;
+}
+
+.close_button {
+  text-align: center;
+  font-weight: 500;
+  padding-bottom: 0.75rem;
+  border: none;
+}
+
+.options {
+  margin-top: 1rem;
+  margin-bottom: 5rem;
+}
+
+.options > div {
+  width: 33%;
+  margin-bottom: 2.5rem;
+  font-weight: 600;
+  align-items: center;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .main_container {
+    width: 85%;
+    height: 65vh;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .main_container {
+    width: 80%;
+    margin-left: 17.5vw;
+  }
+}

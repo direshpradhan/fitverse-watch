@@ -1,0 +1,34 @@
+.main {
+  width: 85vw;
+  margin: 0 auto 3rem;
+}
+
+.main > h2 {
+  margin-bottom: 2rem;
+}
+
+.card_container {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    width: 50vw;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .main {
+    width: 35vw;
+  }
+}

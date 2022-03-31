@@ -1,0 +1,46 @@
+.main {
+  margin: 0 0 5rem;
+}
+
+.card_container {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.videos_container {
+  width: 95%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.loader_container {
+  margin-left: 18.5vw;
+  width: 80%;
+  height: 80vh;
+}
+
+@media screen and (min-width: 460px) {
+  .card_container {
+    width: 40%;
+    margin: 0rem 0.5rem 1rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .card_container {
+    width: 30%;
+  }
+
+  .videos_container {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1.5rem 0.75rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .videos_container {
+    margin-left: 17.5vw;
+  }
+}

@@ -1,0 +1,16 @@
+.listitem {
+  list-style: none;
+  padding: 0.5rem 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.listitem > span {
+  margin-right: 0.5rem;
+}
+
+.listitem:hover {
+  background-color: #f3f4f6;
+  color: var(--primary-color);
+  font-weight: 600;
+}
